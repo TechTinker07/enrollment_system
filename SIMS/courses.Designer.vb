@@ -18,154 +18,173 @@ Partial Class courses
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.lblHeader = New Label()
-        Me.lblSearch = New Label()
-        Me.txtSearch = New TextBox()
-        Me.dgvCourses = New DataGridView()
-        Me.lblCourseID = New Label()
-        Me.lblCourseName = New Label()
-        Me.txtCourseID = New TextBox()
-        Me.txtCourseName = New TextBox()
-        Me.btnAdd = New Button()
-        Me.btnEdit = New Button()
-        Me.btnDelete = New Button()
-        Me.btnClear = New Button()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.lblHeader = New System.Windows.Forms.Label()
+        Me.lblSearch = New System.Windows.Forms.Label()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.dgvCourses = New System.Windows.Forms.DataGridView()
+        Me.lblCourseID = New System.Windows.Forms.Label()
+        Me.lblCourseName = New System.Windows.Forms.Label()
+        Me.txtCourseID = New System.Windows.Forms.TextBox()
+        Me.txtCourseName = New System.Windows.Forms.TextBox()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
         CType(Me.dgvCourses, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        ' lblHeader
+        'lblHeader
         '
-        Me.lblHeader.Top = 10
-        Me.lblHeader.Left = 10
-        Me.lblHeader.Width = 1000
-        Me.lblHeader.Height = 40
-        Me.lblHeader.Font = New Font("Segoe UI", 16, FontStyle.Bold)
+        Me.lblHeader.Font = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
+        Me.lblHeader.Location = New System.Drawing.Point(10, 10)
+        Me.lblHeader.Name = "lblHeader"
+        Me.lblHeader.Size = New System.Drawing.Size(1000, 40)
+        Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Courses Management"
-        Me.lblHeader.TextAlign = ContentAlignment.MiddleLeft
+        Me.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        ' lblSearch
+        'lblSearch
         '
-        Me.lblSearch.Top = 60
-        Me.lblSearch.Left = 10
-        Me.lblSearch.Width = 120
-        Me.lblSearch.Height = 25
-        Me.lblSearch.Font = New Font("Segoe UI", 10)
+        Me.lblSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblSearch.Location = New System.Drawing.Point(10, 60)
+        Me.lblSearch.Name = "lblSearch"
+        Me.lblSearch.Size = New System.Drawing.Size(120, 25)
+        Me.lblSearch.TabIndex = 1
         Me.lblSearch.Text = "Search Courses:"
         '
-        ' txtSearch
+        'txtSearch
         '
-        Me.txtSearch.Top = 60
-        Me.txtSearch.Left = 135
-        Me.txtSearch.Width = 250
-        Me.txtSearch.Height = 25
-        Me.txtSearch.Font = New Font("Segoe UI", 10)
+        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtSearch.Location = New System.Drawing.Point(135, 60)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(250, 25)
+        Me.txtSearch.TabIndex = 2
         '
-        ' lblCourseID
+        'dgvCourses
         '
-        Me.lblCourseID.Top = 100
-        Me.lblCourseID.Left = 10
-        Me.lblCourseID.Width = 100
-        Me.lblCourseID.Height = 25
-        Me.lblCourseID.Font = New Font("Segoe UI", 10)
+        Me.dgvCourses.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvCourses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvCourses.BackgroundColor = System.Drawing.Color.White
+        Me.dgvCourses.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvCourses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvCourses.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvCourses.EnableHeadersVisualStyles = False
+        Me.dgvCourses.Location = New System.Drawing.Point(10, 180)
+        Me.dgvCourses.MultiSelect = False
+        Me.dgvCourses.Name = "dgvCourses"
+        Me.dgvCourses.ReadOnly = True
+        Me.dgvCourses.RowTemplate.Height = 40
+        Me.dgvCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvCourses.Size = New System.Drawing.Size(760, 250)
+        Me.dgvCourses.TabIndex = 7
+        '
+        'lblCourseID
+        '
+        Me.lblCourseID.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblCourseID.Location = New System.Drawing.Point(10, 100)
+        Me.lblCourseID.Name = "lblCourseID"
+        Me.lblCourseID.Size = New System.Drawing.Size(100, 25)
+        Me.lblCourseID.TabIndex = 3
         Me.lblCourseID.Text = "Course ID:"
         '
-        ' txtCourseID
+        'lblCourseName
         '
-        Me.txtCourseID.Top = 100
-        Me.txtCourseID.Left = 120
-        Me.txtCourseID.Width = 200
-        Me.txtCourseID.Height = 25
-        Me.txtCourseID.Font = New Font("Segoe UI", 10)
-        '
-        ' lblCourseName
-        '
-        Me.lblCourseName.Top = 140
-        Me.lblCourseName.Left = 10
-        Me.lblCourseName.Width = 100
-        Me.lblCourseName.Height = 25
-        Me.lblCourseName.Font = New Font("Segoe UI", 10)
+        Me.lblCourseName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblCourseName.Location = New System.Drawing.Point(10, 140)
+        Me.lblCourseName.Name = "lblCourseName"
+        Me.lblCourseName.Size = New System.Drawing.Size(100, 25)
+        Me.lblCourseName.TabIndex = 5
         Me.lblCourseName.Text = "Course Name:"
         '
-        ' txtCourseName
+        'txtCourseID
         '
-        Me.txtCourseName.Top = 140
-        Me.txtCourseName.Left = 120
-        Me.txtCourseName.Width = 200
-        Me.txtCourseName.Height = 25
-        Me.txtCourseName.Font = New Font("Segoe UI", 10)
+        Me.txtCourseID.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtCourseID.Location = New System.Drawing.Point(120, 100)
+        Me.txtCourseID.Name = "txtCourseID"
+        Me.txtCourseID.Size = New System.Drawing.Size(200, 25)
+        Me.txtCourseID.TabIndex = 4
         '
-        ' dgvCourses
+        'txtCourseName
         '
-        Me.dgvCourses.Top = 180
-        Me.dgvCourses.Left = 10
-        Me.dgvCourses.Width = 760
-        Me.dgvCourses.Height = 250
-        Me.dgvCourses.BackgroundColor = Color.White
-        Me.dgvCourses.BorderStyle = BorderStyle.None
-        Me.dgvCourses.EnableHeadersVisualStyles = False
-        Me.dgvCourses.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(180, 225, 250)
-        Me.dgvCourses.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 30)
-        Me.dgvCourses.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
-        Me.dgvCourses.RowTemplate.Height = 40
-        Me.dgvCourses.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 240, 255)
-        Me.dgvCourses.DefaultCellStyle.SelectionForeColor = Color.Black
-        Me.dgvCourses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvCourses.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        Me.dgvCourses.ReadOnly = True
-        Me.dgvCourses.MultiSelect = False
-        Me.dgvCourses.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        Me.txtCourseName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtCourseName.Location = New System.Drawing.Point(120, 140)
+        Me.txtCourseName.Name = "txtCourseName"
+        Me.txtCourseName.Size = New System.Drawing.Size(200, 25)
+        Me.txtCourseName.TabIndex = 6
         '
-        ' btnAdd
+        'btnAdd
         '
-        Me.btnAdd.Top = 440
-        Me.btnAdd.Left = 10
-        Me.btnAdd.Width = 90
-        Me.btnAdd.Height = 35
-        Me.btnAdd.Text = "Add"
-        Me.btnAdd.BackColor = Color.FromArgb(100, 180, 250)
-        Me.btnAdd.ForeColor = Color.White
-        Me.btnAdd.FlatStyle = FlatStyle.Flat
+        Me.btnAdd.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.btnAdd.FlatAppearance.BorderSize = 0
+        Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAdd.ForeColor = System.Drawing.Color.White
+        Me.btnAdd.Location = New System.Drawing.Point(10, 440)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(90, 35)
+        Me.btnAdd.TabIndex = 8
+        Me.btnAdd.Text = "Add"
+        Me.btnAdd.UseVisualStyleBackColor = False
         '
-        ' btnEdit
+        'btnEdit
         '
-        Me.btnEdit.Top = 440
-        Me.btnEdit.Left = 110
-        Me.btnEdit.Width = 90
-        Me.btnEdit.Height = 35
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.BackColor = Color.FromArgb(100, 180, 250)
-        Me.btnEdit.ForeColor = Color.White
-        Me.btnEdit.FlatStyle = FlatStyle.Flat
+        Me.btnEdit.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.btnEdit.FlatAppearance.BorderSize = 0
+        Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEdit.ForeColor = System.Drawing.Color.White
+        Me.btnEdit.Location = New System.Drawing.Point(110, 440)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(90, 35)
+        Me.btnEdit.TabIndex = 9
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = False
         '
-        ' btnDelete
+        'btnDelete
         '
-        Me.btnDelete.Top = 440
-        Me.btnDelete.Left = 210
-        Me.btnDelete.Width = 90
-        Me.btnDelete.Height = 35
-        Me.btnDelete.Text = "Delete"
-        Me.btnDelete.BackColor = Color.FromArgb(100, 180, 250)
-        Me.btnDelete.ForeColor = Color.White
-        Me.btnDelete.FlatStyle = FlatStyle.Flat
+        Me.btnDelete.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.btnDelete.FlatAppearance.BorderSize = 0
+        Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDelete.ForeColor = System.Drawing.Color.White
+        Me.btnDelete.Location = New System.Drawing.Point(210, 440)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(90, 35)
+        Me.btnDelete.TabIndex = 10
+        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
-        ' btnClear
+        'btnClear
         '
-        Me.btnClear.Top = 440
-        Me.btnClear.Left = 310
-        Me.btnClear.Width = 90
-        Me.btnClear.Height = 35
-        Me.btnClear.Text = "Clear"
-        Me.btnClear.BackColor = Color.FromArgb(100, 180, 250)
-        Me.btnClear.ForeColor = Color.White
-        Me.btnClear.FlatStyle = FlatStyle.Flat
+        Me.btnClear.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.btnClear.FlatAppearance.BorderSize = 0
+        Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClear.ForeColor = System.Drawing.Color.White
+        Me.btnClear.Location = New System.Drawing.Point(310, 440)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(90, 35)
+        Me.btnClear.TabIndex = 11
+        Me.btnClear.Text = "Clear"
+        Me.btnClear.UseVisualStyleBackColor = False
         '
-        ' courses
+        'courses
         '
-        Me.ClientSize = New Size(800, 500)
+        Me.ClientSize = New System.Drawing.Size(800, 500)
         Me.Controls.Add(Me.lblHeader)
         Me.Controls.Add(Me.lblSearch)
         Me.Controls.Add(Me.txtSearch)
@@ -178,10 +197,12 @@ Partial Class courses
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
+        Me.Name = "courses"
         Me.Text = "Courses Management"
-        Me.WindowState = FormWindowState.Maximized
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dgvCourses, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
+
     End Sub
 End Class
