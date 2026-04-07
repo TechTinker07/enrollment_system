@@ -70,16 +70,15 @@ Public Class Usermngmtfrm
             Return
         End If
 
-        ' Match these to your SQL SELECT aliases
-        Dim userId As String = dgvUsers.SelectedRows(0).Cells("user_id").Value.ToString()
-        Dim userName As String = dgvUsers.SelectedRows(0).Cells("full_name").Value.ToString()
+        Dim userId As String = dgvUsers.SelectedRows(0).Cells("colID").Value.ToString()
+        Dim userName As String = dgvUsers.SelectedRows(0).Cells("colName").Value.ToString()
 
         Dim ask = MsgBox($"Approve account for {userName}?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "Confirm Approval")
 
         If ask = MsgBoxResult.Yes Then
             Try
                 openConn()
-                Dim updateSql As String = "UPDATE users SET role = 'student' WHERE user_id = @id"
+                Dim updateSql As String = "UPDATE users SET status = 'verified' WHERE user_id = @id"
                 Using updateCmd As MySqlCommand = cmd(updateSql)
                     updateCmd.Parameters.AddWithValue("@id", userId)
                     updateCmd.ExecuteNonQuery()
@@ -101,7 +100,7 @@ Public Class Usermngmtfrm
     Private Sub btnDelete_Click(sender As Object, e As EventArgs)
         If dgvUsers.SelectedRows.Count = 0 Then Return
 
-        Dim userId As String = dgvUsers.SelectedRows(0).Cells("user_id").Value.ToString()
+        Dim userId As String = dgvUsers.SelectedRows(0).Cells("colID").Value.ToString()
 
         Dim ask = MsgBox("Are you sure you want to delete this user?",
                          MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Warning")
