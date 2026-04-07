@@ -38,9 +38,11 @@ Public Class loginfrm
                     If userRole.ToLower() = "admin" Then
                         ' AdminDashboard.Show() ' Palitan mo ito ng tamang pangalan ng Admin Form mo
                         MsgBox("Opening Admin Dashboard...", MsgBoxStyle.Information)
+                        Adminfrm.Show()
                     ElseIf userRole.ToLower() = "student" Then
                         ' StudentDashboard.Show() ' Palitan mo ito ng tamang pangalan ng Student Form mo
                         MsgBox("Opening Student Dashboard...", MsgBoxStyle.Information)
+
                     Else
                         ' Sakaling may ibang role (e.g. Staff, Teacher)
                         MsgBox("Role not recognized. Please contact admin.", MsgBoxStyle.Exclamation)
@@ -59,5 +61,9 @@ Public Class loginfrm
             If dr IsNot Nothing AndAlso Not dr.IsClosed Then dr.Close()
             closeConn()
         End Try
+    End Sub
+
+    Private Sub loginfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
