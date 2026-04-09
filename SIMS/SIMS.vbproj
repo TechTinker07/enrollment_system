@@ -99,6 +99,8 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -140,6 +142,12 @@
     <Compile Include="Adminfrm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="announcementform.Designer.vb">
+      <DependentUpon>announcementform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="announcementform.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Announcementfrm.Designer.vb">
       <DependentUpon>Announcementfrm.vb</DependentUpon>
     </Compile>
@@ -156,6 +164,18 @@
       <DependentUpon>courselist.vb</DependentUpon>
     </Compile>
     <Compile Include="courselist.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dashboardadmin.Designer.vb">
+      <DependentUpon>dashboardadmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dashboardadmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dashboardteacher.Designer.vb">
+      <DependentUpon>dashboardteacher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dashboardteacher.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dbconnections.vb" />
@@ -177,10 +197,28 @@
     <Compile Include="enrollmentslist.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="financedashboard.Designer.vb">
+      <DependentUpon>financedashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="financedashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Financefrm.Designer.vb">
       <DependentUpon>Financefrm.vb</DependentUpon>
     </Compile>
     <Compile Include="Financefrm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gradeentryform.Designer.vb">
+      <DependentUpon>gradeentryform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="gradeentryform.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gradeslistfrm.Designer.vb">
+      <DependentUpon>gradeslistfrm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="gradeslistfrm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="loginfrm.vb">
@@ -210,6 +248,12 @@
       <DependentUpon>paymentfrm.vb</DependentUpon>
     </Compile>
     <Compile Include="paymentfrm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registrardashboard.Designer.vb">
+      <DependentUpon>registrardashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registrardashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="registrarfrm.Designer.vb">
@@ -277,6 +321,9 @@
     <EmbeddedResource Include="Adminfrm.resx">
       <DependentUpon>Adminfrm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="announcementform.resx">
+      <DependentUpon>announcementform.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Announcementfrm.resx">
       <DependentUpon>Announcementfrm.vb</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="courselist.resx">
       <DependentUpon>courselist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dashboardadmin.resx">
+      <DependentUpon>dashboardadmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dashboardteacher.resx">
+      <DependentUpon>dashboardteacher.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="enrollmentfrm.resx">
       <DependentUpon>enrollmentfrm.vb</DependentUpon>
@@ -298,6 +351,12 @@
     <EmbeddedResource Include="Financefrm.resx">
       <DependentUpon>Financefrm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gradeentryform.resx">
+      <DependentUpon>gradeentryform.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gradeslistfrm.resx">
+      <DependentUpon>gradeslistfrm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="loginfrm.resx">
       <DependentUpon>loginfrm.vb</DependentUpon>
     </EmbeddedResource>
@@ -309,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="paymentfrm.resx">
       <DependentUpon>paymentfrm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registrardashboard.resx">
+      <DependentUpon>registrardashboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="registrarfrm.resx">
       <DependentUpon>registrarfrm.vb</DependentUpon>

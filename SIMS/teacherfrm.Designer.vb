@@ -16,17 +16,17 @@ Partial Class teacherfrm
 
     Private components As System.ComponentModel.IContainer
 
-    'UI Controls
-    Private pnlSidebar As Panel
-    Private pnlHeader As Panel
-    Private pnlMain As Panel
-    Private btnDashboard As Button
-    Private btnGradeEntry As Button
-    Private btnGradeList As Button
-    Private btnAnnouncements As Button
-    Private btnLogout As Button
-    Private lblHeader As Label
-    Private lblWelcome As Label
+    ' FIX: Lahat ng UI controls ay ginawa nating WithEvents para gumana ang "Handles" sa code-behind
+    Friend WithEvents pnlSidebar As Panel
+    Friend WithEvents pnlHeader As Panel
+    Friend WithEvents pnlMain As Panel
+    Friend WithEvents btnDashboard As Button
+    Friend WithEvents btnGradeEntry As Button
+    Friend WithEvents btnGradeList As Button
+    Friend WithEvents btnAnnouncements As Button
+    Friend WithEvents btnLogout As Button
+    Friend WithEvents lblHeader As Label
+    Friend WithEvents lblWelcome As Label
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
@@ -161,7 +161,7 @@ Partial Class teacherfrm
         Me.btnLogout.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
         Me.btnLogout.Size = New System.Drawing.Size(220, 60)
         Me.btnLogout.TabIndex = 0
-        Me.btnLogout.Text = "Logout"
+        Me.btnLogout.Text = "  Logout"
         Me.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnLogout.UseVisualStyleBackColor = False
         '
@@ -179,7 +179,7 @@ Partial Class teacherfrm
         Me.btnAnnouncements.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
         Me.btnAnnouncements.Size = New System.Drawing.Size(220, 60)
         Me.btnAnnouncements.TabIndex = 1
-        Me.btnAnnouncements.Text = "Announcements"
+        Me.btnAnnouncements.Text = "  Announcements"
         Me.btnAnnouncements.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnAnnouncements.UseVisualStyleBackColor = False
         '
@@ -197,7 +197,7 @@ Partial Class teacherfrm
         Me.btnGradeList.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
         Me.btnGradeList.Size = New System.Drawing.Size(220, 60)
         Me.btnGradeList.TabIndex = 2
-        Me.btnGradeList.Text = "Grade List"
+        Me.btnGradeList.Text = "  Grade List"
         Me.btnGradeList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnGradeList.UseVisualStyleBackColor = False
         '
@@ -215,7 +215,7 @@ Partial Class teacherfrm
         Me.btnGradeEntry.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
         Me.btnGradeEntry.Size = New System.Drawing.Size(220, 60)
         Me.btnGradeEntry.TabIndex = 3
-        Me.btnGradeEntry.Text = "Grade Entry"
+        Me.btnGradeEntry.Text = "  Grade Entry"
         Me.btnGradeEntry.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnGradeEntry.UseVisualStyleBackColor = False
         '
@@ -234,7 +234,7 @@ Partial Class teacherfrm
         Me.btnDashboard.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
         Me.btnDashboard.Size = New System.Drawing.Size(220, 60)
         Me.btnDashboard.TabIndex = 4
-        Me.btnDashboard.Text = "Dashboard"
+        Me.btnDashboard.Text = "  Dashboard"
         Me.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDashboard.UseVisualStyleBackColor = False
         '

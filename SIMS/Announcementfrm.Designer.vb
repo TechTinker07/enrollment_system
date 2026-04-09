@@ -153,7 +153,7 @@ Partial Class Announcementfrm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Announcementfrm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Announcement Management"
+        Me.Text = " "
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
         CType(Me.dgvAnnouncements, System.ComponentModel.ISupportInitialize).EndInit()

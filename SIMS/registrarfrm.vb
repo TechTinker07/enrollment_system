@@ -1,8 +1,8 @@
 ﻿Public Class registrarfrm
 
-    ' 1. INITIALIZATION: Pag-link ng buttons sa code
+    ' 1. INITIALIZATION: Pag-setup ng form pagkabukas
     Private Sub registrarfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' AddHandler setup para sa malinis na event management
+        ' Pag-link ng buttons sa kani-kanilang click events
         AddHandler btnDashboard.Click, AddressOf btnDashboard_Click
         AddHandler btnStudentInfo.Click, AddressOf btnStudentInforeg_Click
         AddHandler btnEnrollment.Click, AddressOf btnEnrollment_Click
@@ -12,59 +12,47 @@
         AddHandler btnSubjectList.Click, AddressOf btnSubjectList_Click
         AddHandler btnScheduleList.Click, AddressOf btnScheduleList_Click
         AddHandler btnLogout.Click, AddressOf btnLogout_Click
+
+        ' DEFAULT VIEW: Pagbukas ng form, automatic na Dashboard ang ipapakita
+        OpenRegistrarChild(New registrardashboard())
     End Sub
 
-    ' 2. THE ENGINE: Ang tagapalt ng mga forms sa loob ng pnlMain
+    ' 2. THE ENGINE: Ang tagapalit ng mga forms sa loob ng pnlMain
     Private Sub OpenRegistrarChild(ByVal childForm As Form)
-        ' STEP A: Linisin ang panel at i-dispose ang lumang form
-        ' Gumagamit tayo ng ToArray() para maiwasan ang error habang nagbabago ang collection
+        ' STEP A: Linisin ang panel mula sa anumang controls o lumang forms
         For Each ctrl As Control In pnlMain.Controls.Cast(Of Control)().ToArray()
             If TypeOf ctrl Is Form Then
                 Dim oldForm As Form = DirectCast(ctrl, Form)
                 oldForm.Close()
                 oldForm.Dispose()
             Else
-                ' Itago ang ibang controls gaya ng lblWelcome sa halip na i-delete
+                ' Itago ang welcome label o static controls kung mayroon man
                 ctrl.Visible = False
             End If
         Next
 
-        ' Siguraduhin na tanggal lahat ng controls na Form type
+        ' Siguraduhin na zero-out ang controls list para sa bagong form
         pnlMain.Controls.Clear()
 
-        ' STEP B: I-setup ang bagong form
+        ' STEP B: I-setup ang bagong form bilang child control
         childForm.TopLevel = False
         childForm.FormBorderStyle = FormBorderStyle.None
         childForm.Dock = DockStyle.Fill
 
-        ' STEP C: Ilagay sa panel at ipakita
+        ' STEP C: Ilagay sa panel at ipakita sa user
         pnlMain.Controls.Add(childForm)
         pnlMain.Tag = childForm
         childForm.Show()
 
-        ' Update ang Header text
+        ' I-update ang header title base sa pangalan ng binuksang form
         lblHeader.Text = "Registrar - " & childForm.Text
     End Sub
 
-    ' 3. BUTTON ACTIONS
+    ' 3. BUTTON ACTIONS: Mga function na tatawag sa specific forms
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs)
-        ' Linisin ang panel mula sa anumang nakabukas na child form
-        For Each ctrl As Control In pnlMain.Controls.Cast(Of Control)().ToArray()
-            If TypeOf ctrl Is Form Then
-                DirectCast(ctrl, Form).Close()
-                DirectCast(ctrl, Form).Dispose()
-            End If
-        Next
-
-        pnlMain.Controls.Clear()
-
-        ' Ibalik ang Welcome Label at gawing visible
-        pnlMain.Controls.Add(lblWelcome)
-        lblWelcome.Visible = True
-        lblWelcome.Dock = DockStyle.Fill
-
-        lblHeader.Text = "Registrar Dashboard"
+        ' Binabago nito ang view pabalik sa Dashboard
+        OpenRegistrarChild(New registrardashboard())
     End Sub
 
     Private Sub btnStudentInforeg_Click(sender As Object, e As EventArgs)
@@ -96,9 +84,10 @@
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs)
-        If MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        ' Siguraduhin muna bago i-logout ang user
+        If MessageBox.Show("Are you sure you want to logout?", "Logout Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             loginfrm.Show()
-            Me.Close() ' Mas mainam ang Close() kaysa Dispose() para sa main forms para ma-trigger ang FormClosing events
+            Me.Close() ' Isinasara ang form at tinatapos ang session
         End If
     End Sub
 
