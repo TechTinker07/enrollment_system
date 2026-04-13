@@ -1,14 +1,13 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Billing
-    ' Variable to store the currently selected Billing ID
     Private selectedBillingID As Integer = 0
 
     Private Sub Billing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadBillingData()
     End Sub
 
-    ' 1. LOAD DATA: Join billing, enrollments, and students
+    ' 1. LOAD BILLING DATA
     Public Sub LoadBillingData(Optional searchKeyword As String = "")
         Try
             openConn()
@@ -24,11 +23,21 @@ Public Class Billing
             End If
 
             Dim adapter As New MySqlDataAdapter(query, conn)
-            adapter.SelectCommand.Parameters.AddWithValue("@search", "%" & searchKeyword & "%")
+            If Not String.IsNullOrEmpty(searchKeyword) Then
+                adapter.SelectCommand.Parameters.AddWithValue("@search", "%" & searchKeyword & "%")
+            End If
 
             Dim dt As New DataTable()
             adapter.Fill(dt)
             dgvBilling.DataSource = dt
+
+            ' Reset UI after refresh
+            lblSelectedStudent.Text = "STUDENT: ----"
+            lblBalanceStatus.Text = "BALANCE: ₱ 0.00"
+            selectedBillingID = 0
+            txtPaymentInput.Clear()
+            dgvPaymentHistory.DataSource = Nothing
+
         Catch ex As Exception
             MsgBox("Error loading data: " & ex.Message)
         Finally
@@ -36,28 +45,59 @@ Public Class Billing
         End Try
     End Sub
 
-    ' 2. SEARCH FUNCTION
+    ' 2. SEARCH
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadBillingData(txtSearch.Text)
     End Sub
 
-    ' 3. SELECTION LOGIC: When user clicks a row in the DataGridView
+    ' 3. ROW CLICK — load student info + payment history
     Private Sub dgvBilling_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBilling.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvBilling.Rows(e.RowIndex)
             selectedBillingID = Convert.ToInt32(row.Cells("billing_id").Value)
             lblSelectedStudent.Text = "STUDENT: " & row.Cells("student_name").Value.ToString()
             lblBalanceStatus.Text = "BALANCE: ₱ " & FormatNumber(row.Cells("balance").Value, 2)
-
-            ' Clear input for fresh entry
             txtPaymentInput.Clear()
+
+            ' Load payment history ng selected student
+            LoadPaymentHistory(selectedBillingID)
         End If
     End Sub
 
-    ' 4. FULL PAYMENT LOGIC
+    ' 4. LOAD PAYMENT HISTORY
+    Private Sub LoadPaymentHistory(billingID As Integer)
+        Try
+            openConn()
+            Dim query As String = "SELECT payment_date AS 'Date', " &
+                                 "amount_paid AS 'Amount Paid', " &
+                                 "reference_no AS 'Reference No' " &
+                                 "FROM payments " &
+                                 "WHERE billing_id = @bid " &
+                                 "ORDER BY payment_date DESC"
+
+            Dim adapter As New MySqlDataAdapter(query, conn)
+            adapter.SelectCommand.Parameters.AddWithValue("@bid", billingID)
+
+            Dim dt As New DataTable()
+            adapter.Fill(dt)
+            dgvPaymentHistory.DataSource = dt
+
+        Catch ex As Exception
+            MsgBox("Error loading payment history: " & ex.Message)
+        Finally
+            closeConn()
+        End Try
+    End Sub
+
+    ' 5. FULL PAYMENT
     Private Sub btnFullPay_Click(sender As Object, e As EventArgs) Handles btnFullPay.Click
         If selectedBillingID = 0 Then
             MsgBox("Please select a student record first.")
+            Return
+        End If
+
+        If dgvBilling.SelectedRows.Count = 0 Then
+            MsgBox("Please select a billing row first.")
             Return
         End If
 
@@ -71,10 +111,15 @@ Public Class Billing
         ProcessPayment(currentBalance, "Full Payment")
     End Sub
 
-    ' 5. PARTIAL PAYMENT LOGIC
+    ' 6. PARTIAL PAYMENT
     Private Sub btnPartialPay_Click(sender As Object, e As EventArgs) Handles btnPartialPay.Click
         If selectedBillingID = 0 Then
             MsgBox("Please select a student record first.")
+            Return
+        End If
+
+        If dgvBilling.SelectedRows.Count = 0 Then
+            MsgBox("Please select a billing row first.")
             Return
         End If
 
@@ -97,27 +142,25 @@ Public Class Billing
         End If
 
         ProcessPayment(amount, "Partial Payment")
-
     End Sub
 
-    ' 6. SHARED CORE PROCESSOR: Updates billing and inserts into payments table
+    ' 7. PROCESS PAYMENT — FIX: balance nag-a-update na sa DB
     Private Sub ProcessPayment(payAmount As Decimal, type As String)
         Try
             openConn()
-            ' Start a Transaction to ensure both tables update or none do
             Dim transaction = conn.BeginTransaction()
 
             Try
-                ' Update Billing Table: Increment paid_amount
+                ' balance is a generated column in the schema, so only paid_amount should be updated.
                 Dim updateQuery As String = "UPDATE billing SET paid_amount = paid_amount + @amt WHERE billing_id = @bid"
                 Dim updateCmd = New MySqlCommand(updateQuery, conn, transaction)
                 updateCmd.Parameters.AddWithValue("@amt", payAmount)
                 updateCmd.Parameters.AddWithValue("@bid", selectedBillingID)
                 updateCmd.ExecuteNonQuery()
 
-                ' Insert into Payments Table for Audit Trail
+                ' Insert payment record
                 Dim insertQuery As String = "INSERT INTO payments (billing_id, amount_paid, payment_date, reference_no) " &
-                                          "VALUES (@bid, @amt, NOW(), @ref)"
+                                           "VALUES (@bid, @amt, NOW(), @ref)"
                 Dim insertCmd = New MySqlCommand(insertQuery, conn, transaction)
                 insertCmd.Parameters.AddWithValue("@bid", selectedBillingID)
                 insertCmd.Parameters.AddWithValue("@amt", payAmount)
@@ -127,9 +170,11 @@ Public Class Billing
                 transaction.Commit()
                 MsgBox(type & " processed successfully!", MsgBoxStyle.Information)
 
-                ' Refresh UI
+                Dim currentBillingID As Integer = selectedBillingID
                 LoadBillingData()
-                txtPaymentInput.Clear()
+                selectedBillingID = currentBillingID
+                LoadPaymentHistory(currentBillingID)
+
             Catch ex As Exception
                 transaction.Rollback()
                 MsgBox("Transaction failed: " & ex.Message)
@@ -140,5 +185,23 @@ Public Class Billing
         Finally
             closeConn()
         End Try
+    End Sub
+
+    Private Sub dgvBilling_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBilling.CellContentClick
+
+    End Sub
+
+    Private Sub txtSearch_Enter(sender As Object, e As EventArgs) Handles txtSearch.Enter
+        If txtSearch.Text = "Search student name or ID" Then
+            txtSearch.Text = ""
+            txtSearch.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtSearch_Leave(sender As Object, e As EventArgs) Handles txtSearch.Leave
+        If String.IsNullOrWhiteSpace(txtSearch.Text) Then
+            txtSearch.Text = "Search student name or ID"
+            txtSearch.ForeColor = Color.Gray
+        End If
     End Sub
 End Class

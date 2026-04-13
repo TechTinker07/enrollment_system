@@ -87,7 +87,8 @@ Public Class paymentfrm
 
             Try
                 ' 1. Insert into Payments Table
-                Dim payQuery As String = "INSERT INTO payments (billing_id, amount_paid, reference_no) VALUES (@bid, @amt, @ref)"
+                Dim payQuery As String = "INSERT INTO payments (billing_id, amount_paid, payment_date, reference_no) " &
+                         "VALUES (@bid, @amt, NOW(), @ref)"
                 Dim payCmd = New MySqlCommand(payQuery, conn, trans)
                 payCmd.Parameters.AddWithValue("@bid", selectedBillingID)
                 payCmd.Parameters.AddWithValue("@amt", paymentAmount)
