@@ -6,6 +6,7 @@ Public Class gradeentryform
     Private Sub gradeentryform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadSubjects()
         LoadGradesTable()
+        ClearForm()
     End Sub
 
     ' === VALIDATION LOGIC: Auto-Remarks ===
@@ -36,6 +37,11 @@ Public Class gradeentryform
             Return
         End If
 
+        If cboSubject.SelectedIndex = -1 Then
+            MsgBox("Error: Please select a subject.", MsgBoxStyle.Exclamation)
+            Return
+        End If
+
         Dim gValue As Double
         If Not Double.TryParse(txtGrade.Text, gValue) OrElse gValue < 1.0 OrElse gValue > 5.0 Then
             MsgBox("Error: Please enter a valid grade between 1.0 and 5.0.", MsgBoxStyle.Exclamation)
@@ -45,7 +51,7 @@ Public Class gradeentryform
         Try
             openConn()
 
-            ' 2. Check if student is actually enrolled (Database Validation)
+            ' 2. Check if student is actually enrolled (txtEnrollmentID stores Student ID)
             Dim checkQuery As String = "SELECT enrollment_id FROM enrollments WHERE student_id = @sid AND status = 'enrolled' LIMIT 1"
             Dim checkCmd As New MySqlCommand(checkQuery, conn)
             checkCmd.Parameters.AddWithValue("@sid", txtEnrollmentID.Text)
@@ -54,6 +60,17 @@ Public Class gradeentryform
             If enrollId Is Nothing Then
                 MsgBox("Validation Error: This Student ID is not currently enrolled.", MsgBoxStyle.Critical)
                 Return
+            End If
+
+            If SelectedGradeID = 0 Then
+                Dim duplicateCheck As New MySqlCommand("SELECT COUNT(*) FROM grades WHERE enrollment_id = @eid AND subject_id = @subid", conn)
+                duplicateCheck.Parameters.AddWithValue("@eid", enrollId)
+                duplicateCheck.Parameters.AddWithValue("@subid", cboSubject.SelectedValue)
+
+                If Convert.ToInt32(duplicateCheck.ExecuteScalar()) > 0 Then
+                    MsgBox("A grade for this subject already exists for the selected student.", MsgBoxStyle.Exclamation)
+                    Return
+                End If
             End If
 
             ' 3. Perform Insert/Update
@@ -98,11 +115,15 @@ Public Class gradeentryform
             If filter <> "" Then sql &= " WHERE s.student_id LIKE @f OR s.last_name LIKE @f"
 
             Dim adp As New MySqlDataAdapter(sql, conn)
-            adp.SelectCommand.Parameters.AddWithValue("@f", "%" & filter & "%")
+            If filter <> "" Then
+                adp.SelectCommand.Parameters.AddWithValue("@f", "%" & filter & "%")
+            End If
             Dim dt As New DataTable
             adp.Fill(dt)
             dgvGrades.DataSource = dt
             dgvGrades.Columns(0).Visible = False ' Hide grade_id
+        Catch ex As Exception
+            MsgBox("Error loading grades: " & ex.Message, MsgBoxStyle.Critical)
         Finally
             closeConn()
         End Try
@@ -117,6 +138,8 @@ Public Class gradeentryform
             cboSubject.DataSource = dt
             cboSubject.DisplayMember = "subject_title"
             cboSubject.ValueMember = "subject_id"
+        Catch ex As Exception
+            MsgBox("Error loading subjects: " & ex.Message, MsgBoxStyle.Critical)
         Finally
             closeConn()
         End Try
@@ -127,10 +150,53 @@ Public Class gradeentryform
         txtEnrollmentID.Clear()
         txtGrade.Clear()
         txtRemarks.Clear()
+        If cboSubject.Items.Count > 0 Then cboSubject.SelectedIndex = 0
         btnSave.Text = "SAVE GRADE"
     End Sub
 
-    Private Sub dgvGrades_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvGrades.CellContentClick
+    Private Sub dgvGrades_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvGrades.CellClick
+        If e.RowIndex < 0 Then Return
 
+        Dim row = dgvGrades.Rows(e.RowIndex)
+        SelectedGradeID = Convert.ToInt32(row.Cells("grade_id").Value)
+        txtEnrollmentID.Text = row.Cells("student_id").Value.ToString()
+        cboSubject.Text = row.Cells("subject_title").Value.ToString()
+        txtGrade.Text = row.Cells("grade_value").Value.ToString()
+        txtRemarks.Text = row.Cells("remarks").Value.ToString()
+        btnSave.Text = "UPDATE GRADE"
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        If SelectedGradeID = 0 Then
+            MsgBox("Please select a grade record first.", MsgBoxStyle.Exclamation)
+            Return
+        End If
+
+        If MsgBox("Are you sure you want to delete this grade?", MsgBoxStyle.YesNo + MsgBoxStyle.Question) <> MsgBoxResult.Yes Then
+            Return
+        End If
+
+        Try
+            openConn()
+            Dim delCmd As New MySqlCommand("DELETE FROM grades WHERE grade_id = @gid", conn)
+            delCmd.Parameters.AddWithValue("@gid", SelectedGradeID)
+            delCmd.ExecuteNonQuery()
+
+            MsgBox("Grade deleted successfully.", MsgBoxStyle.Information)
+            ClearForm()
+            LoadGradesTable()
+        Catch ex As Exception
+            MsgBox("Error deleting grade: " & ex.Message, MsgBoxStyle.Critical)
+        Finally
+            closeConn()
+        End Try
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        ClearForm()
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        LoadGradesTable(txtSearch.Text.Trim())
     End Sub
 End Class

@@ -29,6 +29,7 @@ Public Class loginfrm
                     ' Kunin ang 'role' galing sa database column mo
                     Dim userRole As String = dr("role").ToString()
 
+                    dr.Close()
                     MsgBox("Login Successful! Welcome, " & txtUsername.Text, MsgBoxStyle.Information, "Access Granted")
 
 
@@ -109,5 +110,9 @@ Public Class loginfrm
         Else
             txtPassword.PasswordChar = "●"
         End If
+    End Sub
+
+    Private Sub pnlContainer_Paint(sender As Object, e As PaintEventArgs) Handles pnlContainer.Paint
+
     End Sub
 End Class

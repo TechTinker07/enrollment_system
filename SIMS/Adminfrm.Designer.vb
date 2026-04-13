@@ -18,7 +18,6 @@ Partial Class Adminfrm
 
     'UI Controls
     Private pnlSidebar As Panel
-    Private pnlHeader As Panel
     Private pnlMain As Panel
     Private btnDashboard As Button
     Private btnUserMgmt As Button
@@ -28,7 +27,6 @@ Partial Class Adminfrm
     Private btnSchedules As Button
     Private btnAnnouncements As Button
     Private btnLogout As Button
-    Private lblHeader As Label
     Private lblDashboardWelcome As Label
 
     <System.Diagnostics.DebuggerStepThrough()>
@@ -55,8 +53,6 @@ Partial Class Adminfrm
         Me.btnStudentInfo = New System.Windows.Forms.Button()
         Me.btnUserMgmt = New System.Windows.Forms.Button()
         Me.btnDashboard = New System.Windows.Forms.Button()
-        Me.pnlHeader = New System.Windows.Forms.Panel()
-        Me.lblHeader = New System.Windows.Forms.Label()
         Me.pnlMain = New System.Windows.Forms.Panel()
         Me.lblDashboardWelcome = New System.Windows.Forms.Label()
         Me.pnlSidebar.SuspendLayout()
@@ -69,12 +65,13 @@ Partial Class Adminfrm
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlHeader.SuspendLayout()
         Me.pnlMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlSidebar
         '
+        Me.pnlSidebar.AutoScroll = True
+        Me.pnlSidebar.AutoScrollMinSize = New System.Drawing.Size(0, 760)
         Me.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
         Me.pnlSidebar.Controls.Add(Me.PictureBox8)
         Me.pnlSidebar.Controls.Add(Me.PictureBox9)
@@ -399,38 +396,14 @@ Partial Class Adminfrm
         Me.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDashboard.UseVisualStyleBackColor = False
         '
-        'pnlHeader
-        '
-        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(173, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.pnlHeader.Controls.Add(Me.lblHeader)
-        Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlHeader.Location = New System.Drawing.Point(220, 0)
-        Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1150, 60)
-        Me.pnlHeader.TabIndex = 1
-        '
-        'lblHeader
-        '
-        Me.lblHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.lblHeader.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblHeader.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.ForeColor = System.Drawing.Color.White
-        Me.lblHeader.Location = New System.Drawing.Point(0, 0)
-        Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblHeader.Size = New System.Drawing.Size(1150, 60)
-        Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "Admin Dashboard"
-        Me.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'pnlMain
         '
         Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
         Me.pnlMain.Controls.Add(Me.lblDashboardWelcome)
         Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlMain.Location = New System.Drawing.Point(220, 60)
+        Me.pnlMain.Location = New System.Drawing.Point(220, 0)
         Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(1150, 678)
+        Me.pnlMain.Size = New System.Drawing.Size(1150, 738)
         Me.pnlMain.TabIndex = 0
         '
         'lblDashboardWelcome
@@ -440,7 +413,7 @@ Partial Class Adminfrm
         Me.lblDashboardWelcome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.lblDashboardWelcome.Location = New System.Drawing.Point(0, 0)
         Me.lblDashboardWelcome.Name = "lblDashboardWelcome"
-        Me.lblDashboardWelcome.Size = New System.Drawing.Size(1150, 678)
+        Me.lblDashboardWelcome.Size = New System.Drawing.Size(1150, 738)
         Me.lblDashboardWelcome.TabIndex = 0
         Me.lblDashboardWelcome.Text = "Welcome to the Admin Dashboard!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Use the menu to access modules."
         Me.lblDashboardWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -451,7 +424,6 @@ Partial Class Adminfrm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1370, 738)
         Me.Controls.Add(Me.pnlMain)
-        Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlSidebar)
         Me.Name = "Adminfrm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -468,7 +440,6 @@ Partial Class Adminfrm
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlHeader.ResumeLayout(False)
         Me.pnlMain.ResumeLayout(False)
         Me.ResumeLayout(False)
 

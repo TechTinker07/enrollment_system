@@ -57,7 +57,6 @@ Partial Class gradeentryform
         Me.pnlSidebar.Controls.Add(Me.btnSave)
         Me.pnlSidebar.Controls.Add(Me.btnDelete)
         Me.pnlSidebar.Controls.Add(Me.btnClear)
-        Me.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlSidebar.Location = New System.Drawing.Point(0, 0)
         Me.pnlSidebar.Name = "pnlSidebar"
         Me.pnlSidebar.Size = New System.Drawing.Size(280, 600)
@@ -80,7 +79,7 @@ Partial Class gradeentryform
         Me.lblEnrollID.Name = "lblEnrollID"
         Me.lblEnrollID.Size = New System.Drawing.Size(100, 23)
         Me.lblEnrollID.TabIndex = 1
-        Me.lblEnrollID.Text = "ENROLLMENT ID"
+        Me.lblEnrollID.Text = "STUDENT ID"
         '
         'txtEnrollmentID
         '
@@ -187,7 +186,7 @@ Partial Class gradeentryform
         '
         Me.txtSearch.Location = New System.Drawing.Point(520, 22)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(420, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(1016, 20)
         Me.txtSearch.TabIndex = 1
         '
         'dgvGrades

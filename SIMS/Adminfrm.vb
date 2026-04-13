@@ -59,11 +59,11 @@
     End Sub
 
     Private Sub btnSchedules_Click(sender As Object, e As EventArgs)
-        OpenChildForm(New ScheduleFrm())
+        OpenChildForm(New schedulelist())
     End Sub
 
     Private Sub btnAnnouncements_Click(sender As Object, e As EventArgs)
-        OpenChildForm(New Announcementfrm())
+        OpenChildForm(New announcementform())
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs)

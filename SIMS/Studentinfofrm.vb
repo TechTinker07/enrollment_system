@@ -4,10 +4,20 @@ Public Class Studentinfofrm
 
     ' --- Load Event ---
     Private Sub Studentinfofrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Rounded corners para sa Panel
+        Dim pathPanel As New System.Drawing.Drawing2D.GraphicsPath()
+        pathPanel.AddArc(0, 0, 20, 20, 180, 90)
+        pathPanel.AddArc(pnlInfo.Width - 20, 0, 20, 20, 270, 90)
+        pathPanel.AddArc(pnlInfo.Width - 20, pnlInfo.Height - 20, 20, 20, 0, 90)
+        pathPanel.AddArc(0, pnlInfo.Height - 20, 20, 20, 90, 90)
+        pathPanel.CloseFigure()
+        pnlInfo.Region = New Region(pathPanel)
+
         ' Manually link the event to fix the BC30506 error
         AddHandler txtSearch.TextChanged, AddressOf txtSearch_TextChanged
-
         LoadStudentData()
+
+
     End Sub
 
     ' --- Fetch Data Function ---
@@ -43,7 +53,7 @@ Public Class Studentinfofrm
 
                 Dim da As New MySqlDataAdapter(sqlCmd)
                 da.Fill(dt)
-
+                lblCount.Text = "Total Students: " & dt.Rows.Count
                 dgvStudents.DataSource = dt
             End Using
 
@@ -59,5 +69,6 @@ Public Class Studentinfofrm
         ' Calling the load function with the current text
         LoadStudentData(txtSearch.Text.Trim())
     End Sub
+
 
 End Class

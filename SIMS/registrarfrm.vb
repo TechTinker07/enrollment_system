@@ -80,7 +80,7 @@
     End Sub
 
     Private Sub btnScheduleList_Click(sender As Object, e As EventArgs)
-        OpenRegistrarChild(New ScheduleFrm())
+        OpenRegistrarChild(New schedulelist())
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs)

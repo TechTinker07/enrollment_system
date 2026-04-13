@@ -5,7 +5,17 @@ Public Class subjectlist
     Dim selectedID As Integer = 0
 
     Private Sub subjectlist_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadDropdownOptions()
         LoadSubjects()
+        ClearFields()
+    End Sub
+
+    Private Sub LoadDropdownOptions()
+        cmbType.Items.Clear()
+        cmbType.Items.AddRange(New Object() {"Lecture", "Laboratory", "Lecture/Lab"})
+
+        cmbDepartment.Items.Clear()
+        cmbDepartment.Items.AddRange(New Object() {"Information Technology", "Tourism Management", "General Education"})
     End Sub
 
     ' 1. READ: Hatakin ang lahat ng subjects mula sa DB
@@ -14,7 +24,7 @@ Public Class subjectlist
             openConn()
             ' Ang query ay naka-align sa columns ng subjects table mo
             Dim query As String = "SELECT subject_id AS 'ID', subject_code AS 'Code', " &
-                                 "subject_title AS 'Title', units AS 'Units' " &
+                                 "subject_title AS 'Title', subject_type AS 'Type', department AS 'Department', units AS 'Units' " &
                                  "FROM subjects ORDER BY subject_code ASC"
 
             Dim da As New MySqlDataAdapter(query, conn)
@@ -36,8 +46,12 @@ Public Class subjectlist
     ' 2. CREATE & UPDATE: Isang logic para sa pag-save
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         ' Basic Validation
-        If String.IsNullOrWhiteSpace(txtCode.Text) Or String.IsNullOrWhiteSpace(txtTitle.Text) Then
-            MsgBox("Please provide both Subject Code and Title.", MsgBoxStyle.Exclamation)
+        If String.IsNullOrWhiteSpace(txtCode.Text) Or
+           String.IsNullOrWhiteSpace(txtTitle.Text) Or
+           cmbType.SelectedIndex = -1 Or
+           cmbDepartment.SelectedIndex = -1 Then
+
+            MsgBox("Please provide Subject Code, Title, Type, and Department.", MsgBoxStyle.Exclamation)
             Return
         End If
 
@@ -47,17 +61,19 @@ Public Class subjectlist
 
             If selectedID = 0 Then
                 ' Mode: Add New
-                query = "INSERT INTO subjects (subject_code, subject_title, units) " &
-                        "VALUES (@code, @title, @units)"
+                query = "INSERT INTO subjects (subject_code, subject_title, subject_type, department, units) " &
+                        "VALUES (@code, @title, @type, @department, @units)"
             Else
                 ' Mode: Update Existing
-                query = "UPDATE subjects SET subject_code=@code, subject_title=@title, " &
+                query = "UPDATE subjects SET subject_code=@code, subject_title=@title, subject_type=@type, department=@department, " &
                         "units=@units WHERE subject_id=@id"
             End If
 
             Dim mysqlCmd As MySqlCommand = cmd(query)
             mysqlCmd.Parameters.AddWithValue("@code", txtCode.Text.Trim())
             mysqlCmd.Parameters.AddWithValue("@title", txtTitle.Text.Trim())
+            mysqlCmd.Parameters.AddWithValue("@type", cmbType.Text)
+            mysqlCmd.Parameters.AddWithValue("@department", cmbDepartment.Text)
             mysqlCmd.Parameters.AddWithValue("@units", numUnits.Value)
 
             If selectedID <> 0 Then
@@ -114,6 +130,8 @@ Public Class subjectlist
             selectedID = Convert.ToInt32(row.Cells("ID").Value)
             txtCode.Text = row.Cells("Code").Value.ToString()
             txtTitle.Text = row.Cells("Title").Value.ToString()
+            cmbType.Text = row.Cells("Type").Value.ToString()
+            cmbDepartment.Text = row.Cells("Department").Value.ToString()
             numUnits.Value = Convert.ToDecimal(row.Cells("Units").Value)
 
             btnSave.Text = "Update Subject"
@@ -129,8 +147,14 @@ Public Class subjectlist
         selectedID = 0
         txtCode.Clear()
         txtTitle.Clear()
+        cmbType.SelectedIndex = If(cmbType.Items.Count > 0, 0, -1)
+        cmbDepartment.SelectedIndex = If(cmbDepartment.Items.Count > 0, 0, -1)
         numUnits.Value = 3 ' Default units
         btnSave.Text = "Save Subject"
         txtCode.Focus()
+    End Sub
+
+    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+
     End Sub
 End Class
