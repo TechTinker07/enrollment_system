@@ -148,12 +148,6 @@
     <Compile Include="announcementform.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Announcementfrm.Designer.vb">
-      <DependentUpon>Announcementfrm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Announcementfrm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Billing.Designer.vb">
       <DependentUpon>Billing.vb</DependentUpon>
     </Compile>
@@ -268,12 +262,6 @@
     <Compile Include="reports.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Schedulefrm.Designer.vb">
-      <DependentUpon>Schedulefrm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Schedulefrm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="schedulelist.Designer.vb">
       <DependentUpon>schedulelist.vb</DependentUpon>
     </Compile>
@@ -323,9 +311,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="announcementform.resx">
       <DependentUpon>announcementform.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Announcementfrm.resx">
-      <DependentUpon>Announcementfrm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Billing.resx">
       <DependentUpon>Billing.vb</DependentUpon>
@@ -377,9 +362,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reports.resx">
       <DependentUpon>reports.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Schedulefrm.resx">
-      <DependentUpon>Schedulefrm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="schedulelist.resx">
       <DependentUpon>schedulelist.vb</DependentUpon>
