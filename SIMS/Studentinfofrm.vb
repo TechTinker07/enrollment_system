@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 
 Public Class Studentinfofrm
 
@@ -53,7 +53,7 @@ Public Class Studentinfofrm
 
                 Dim da As New MySqlDataAdapter(sqlCmd)
                 da.Fill(dt)
-                lblCount.Text = "Total Students: " & dt.Rows.Count
+                lblCount.Text = dt.Rows.Count.ToString()
                 dgvStudents.DataSource = dt
             End Using
 

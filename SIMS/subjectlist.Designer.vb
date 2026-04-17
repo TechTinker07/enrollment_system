@@ -23,6 +23,12 @@ Partial Class subjectlist
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(subjectlist))
         Me.pnlInputs = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmbDepartment = New System.Windows.Forms.ComboBox()
+        Me.lblType = New System.Windows.Forms.Label()
+        Me.cmbType = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblCode = New System.Windows.Forms.Label()
         Me.txtCode = New System.Windows.Forms.TextBox()
@@ -38,12 +44,6 @@ Partial Class subjectlist
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.lblType = New System.Windows.Forms.Label()
-        Me.cmbType = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.cmbDepartment = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.pnlInputs.SuspendLayout()
         CType(Me.numUnits, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvSubjects, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +77,74 @@ Partial Class subjectlist
         Me.pnlInputs.Padding = New System.Windows.Forms.Padding(25)
         Me.pnlInputs.Size = New System.Drawing.Size(340, 518)
         Me.pnlInputs.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Gray
+        Me.Label5.Location = New System.Drawing.Point(5, 360)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(331, 15)
+        Me.Label5.TabIndex = 23
+        Me.Label5.Text = "———————————————————————————"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label4
+        '
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(25, 270)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(100, 23)
+        Me.Label4.TabIndex = 21
+        Me.Label4.Text = "DEPARTMENT"
+        '
+        'cmbDepartment
+        '
+        Me.cmbDepartment.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbDepartment.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.cmbDepartment.Location = New System.Drawing.Point(25, 295)
+        Me.cmbDepartment.Name = "cmbDepartment"
+        Me.cmbDepartment.Size = New System.Drawing.Size(280, 28)
+        Me.cmbDepartment.TabIndex = 22
+        '
+        'lblType
+        '
+        Me.lblType.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.lblType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.lblType.Location = New System.Drawing.Point(190, 201)
+        Me.lblType.Name = "lblType"
+        Me.lblType.Size = New System.Drawing.Size(100, 23)
+        Me.lblType.TabIndex = 19
+        Me.lblType.Text = "TYPE"
+        '
+        'cmbType
+        '
+        Me.cmbType.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbType.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.cmbType.Location = New System.Drawing.Point(190, 226)
+        Me.cmbType.Name = "cmbType"
+        Me.cmbType.Size = New System.Drawing.Size(115, 28)
+        Me.cmbType.TabIndex = 20
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(4, 44)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(331, 15)
+        Me.Label3.TabIndex = 18
+        Me.Label3.Text = "———————————————————————————"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblTitle
         '
@@ -156,7 +224,7 @@ Partial Class subjectlist
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.btnSave.ForeColor = System.Drawing.Color.Snow
-        Me.btnSave.Location = New System.Drawing.Point(25, 400)
+        Me.btnSave.Location = New System.Drawing.Point(181, 400)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(124, 45)
         Me.btnSave.TabIndex = 7
@@ -185,7 +253,7 @@ Partial Class subjectlist
         Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClear.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnClear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.btnClear.Location = New System.Drawing.Point(181, 400)
+        Me.btnClear.Location = New System.Drawing.Point(22, 400)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(124, 45)
         Me.btnClear.TabIndex = 9
@@ -205,14 +273,14 @@ Partial Class subjectlist
         Me.dgvSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvSubjects.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.dgvSubjects.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.5!)
         DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(244, Byte), Integer), CType(CType(246, Byte), Integer))
         Me.dgvSubjects.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvSubjects.ColumnHeadersHeight = 50
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.5!)
         DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
@@ -222,7 +290,7 @@ Partial Class subjectlist
         Me.dgvSubjects.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvSubjects.EnableHeadersVisualStyles = False
         Me.dgvSubjects.GridColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.dgvSubjects.Location = New System.Drawing.Point(350, 85)
+        Me.dgvSubjects.Location = New System.Drawing.Point(346, 88)
         Me.dgvSubjects.MultiSelect = False
         Me.dgvSubjects.Name = "dgvSubjects"
         Me.dgvSubjects.ReadOnly = True
@@ -237,7 +305,7 @@ Partial Class subjectlist
         Me.dgvSubjects.RowHeadersVisible = False
         Me.dgvSubjects.RowTemplate.Height = 45
         Me.dgvSubjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSubjects.Size = New System.Drawing.Size(647, 512)
+        Me.dgvSubjects.Size = New System.Drawing.Size(647, 509)
         Me.dgvSubjects.TabIndex = 0
         '
         'Panel1
@@ -287,74 +355,6 @@ Partial Class subjectlist
         Me.Label1.TabIndex = 10
         Me.Label1.Text = "Subject Management "
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Gray
-        Me.Label3.Location = New System.Drawing.Point(4, 44)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(331, 15)
-        Me.Label3.TabIndex = 18
-        Me.Label3.Text = "———————————————————————————"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblType
-        '
-        Me.lblType.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.lblType.Location = New System.Drawing.Point(190, 201)
-        Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(100, 23)
-        Me.lblType.TabIndex = 19
-        Me.lblType.Text = "TYPE"
-        '
-        'cmbType
-        '
-        Me.cmbType.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbType.Font = New System.Drawing.Font("Segoe UI", 11.0!)
-        Me.cmbType.Location = New System.Drawing.Point(190, 226)
-        Me.cmbType.Name = "cmbType"
-        Me.cmbType.Size = New System.Drawing.Size(115, 28)
-        Me.cmbType.TabIndex = 20
-        '
-        'Label4
-        '
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(25, 270)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(100, 23)
-        Me.Label4.TabIndex = 21
-        Me.Label4.Text = "DEPARTMENT"
-        '
-        'cmbDepartment
-        '
-        Me.cmbDepartment.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbDepartment.Font = New System.Drawing.Font("Segoe UI", 11.0!)
-        Me.cmbDepartment.Location = New System.Drawing.Point(25, 295)
-        Me.cmbDepartment.Name = "cmbDepartment"
-        Me.cmbDepartment.Size = New System.Drawing.Size(280, 28)
-        Me.cmbDepartment.TabIndex = 22
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Gray
-        Me.Label5.Location = New System.Drawing.Point(5, 360)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(331, 15)
-        Me.Label5.TabIndex = 23
-        Me.Label5.Text = "———————————————————————————"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'subjectlist
         '

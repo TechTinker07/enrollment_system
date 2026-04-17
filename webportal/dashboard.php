@@ -15,10 +15,10 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css'); ?>">
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="max-width: 900px; margin: 40px auto;">
         <h2>Welcome, <?php echo htmlspecialchars($username); ?></h2>
 
         <p>Select what you want to view:</p>
@@ -27,9 +27,8 @@ $username = $_SESSION['username'];
             <li><a href="announcements.php">View Announcements</a></li>
             <li><a href="subjects.php">View Enrolled Subjects</a></li>
             <li><a href="balance.php">View Balance</a></li>
-            <li><a href="logout.php">Logout</a></li>
             <li><a href="grades.php">View Grades</a></li>
-
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 </body>

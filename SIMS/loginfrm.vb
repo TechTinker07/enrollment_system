@@ -112,7 +112,19 @@ Public Class loginfrm
         End If
     End Sub
 
-    Private Sub pnlContainer_Paint(sender As Object, e As PaintEventArgs) Handles pnlContainer.Paint
 
+    Private Sub txtUsername_Enter(sender As Object, e As EventArgs) Handles txtUsername.Enter
+        If txtUsername.Text = "Search student name or ID" Then
+            txtUsername.Text = ""
+            txtUsername.ForeColor = Color.Black
+        End If
     End Sub
+
+    Private Sub txtSearchStudent_Leave(sender As Object, e As EventArgs) Handles txtUsername.Leave
+        If String.IsNullOrWhiteSpace(txtUsername.Text) Then
+            txtUsername.Text = "Search student name or ID"
+            txtUsername.ForeColor = Color.Gray
+        End If
+    End Sub
+
 End Class

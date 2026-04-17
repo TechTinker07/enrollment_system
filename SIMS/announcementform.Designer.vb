@@ -356,7 +356,7 @@ Partial Class announcementform
         '
         Me.lblPostedCount.Font = New System.Drawing.Font("Segoe UI Semibold", 20.0!, System.Drawing.FontStyle.Bold)
         Me.lblPostedCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.lblPostedCount.Location = New System.Drawing.Point(142, 19)
+        Me.lblPostedCount.Location = New System.Drawing.Point(166, 20)
         Me.lblPostedCount.Name = "lblPostedCount"
         Me.lblPostedCount.Size = New System.Drawing.Size(49, 35)
         Me.lblPostedCount.TabIndex = 8
@@ -410,7 +410,7 @@ Partial Class announcementform
         '
         Me.lblUrgentCount.Font = New System.Drawing.Font("Segoe UI Semibold", 20.0!, System.Drawing.FontStyle.Bold)
         Me.lblUrgentCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.lblUrgentCount.Location = New System.Drawing.Point(144, 16)
+        Me.lblUrgentCount.Location = New System.Drawing.Point(154, 18)
         Me.lblUrgentCount.Name = "lblUrgentCount"
         Me.lblUrgentCount.Size = New System.Drawing.Size(54, 35)
         Me.lblUrgentCount.TabIndex = 18
@@ -453,7 +453,7 @@ Partial Class announcementform
         '
         Me.lblRecipientsCount.Font = New System.Drawing.Font("Segoe UI Semibold", 20.0!, System.Drawing.FontStyle.Bold)
         Me.lblRecipientsCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.lblRecipientsCount.Location = New System.Drawing.Point(151, 19)
+        Me.lblRecipientsCount.Location = New System.Drawing.Point(168, 20)
         Me.lblRecipientsCount.Name = "lblRecipientsCount"
         Me.lblRecipientsCount.Size = New System.Drawing.Size(51, 35)
         Me.lblRecipientsCount.TabIndex = 18

@@ -37,6 +37,7 @@ Partial Class Usermngmtfrm
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlDivider = New System.Windows.Forms.Panel()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgvUsers = New System.Windows.Forms.DataGridView()
@@ -51,6 +52,8 @@ Partial Class Usermngmtfrm
         Me.lblStatusInfo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.pnlHeader = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.btnApprove = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
@@ -77,7 +80,7 @@ Partial Class Usermngmtfrm
         Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
-        Me.txtSearch.Location = New System.Drawing.Point(25, 16)
+        Me.txtSearch.Location = New System.Drawing.Point(24, 18)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(260, 23)
         Me.txtSearch.TabIndex = 1
@@ -91,17 +94,19 @@ Partial Class Usermngmtfrm
         Me.dgvUsers.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.dgvUsers.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvUsers.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvUsers.BackgroundColor = System.Drawing.Color.White
         Me.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.dgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(246, Byte), Integer))
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvUsers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvUsers.ColumnHeadersHeight = 38
@@ -112,18 +117,17 @@ Partial Class Usermngmtfrm
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
         DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(0, 6, 0, 6)
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(223, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvUsers.DefaultCellStyle = DataGridViewCellStyle3
-        Me.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvUsers.EnableHeadersVisualStyles = False
         Me.dgvUsers.GridColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
         Me.dgvUsers.Location = New System.Drawing.Point(15, 10)
         Me.dgvUsers.MultiSelect = False
         Me.dgvUsers.Name = "dgvUsers"
         Me.dgvUsers.ReadOnly = True
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
@@ -132,6 +136,9 @@ Partial Class Usermngmtfrm
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvUsers.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvUsers.RowHeadersVisible = False
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.dgvUsers.RowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvUsers.RowTemplate.Height = 30
         Me.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvUsers.Size = New System.Drawing.Size(1070, 506)
         Me.dgvUsers.TabIndex = 0
@@ -200,21 +207,22 @@ Partial Class Usermngmtfrm
         '
         'lblHeader
         '
-        Me.lblHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(137, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.lblHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.lblHeader.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.ForeColor = System.Drawing.Color.White
+        Me.lblHeader.ForeColor = System.Drawing.SystemColors.Window
         Me.lblHeader.Location = New System.Drawing.Point(0, 0)
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Padding = New System.Windows.Forms.Padding(18, 0, 0, 0)
         Me.lblHeader.Size = New System.Drawing.Size(1100, 70)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "👤  User Management Control Center"
         Me.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'pnlHeader
         '
         Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(165, Byte), Integer))
+        Me.pnlHeader.Controls.Add(Me.Label3)
+        Me.pnlHeader.Controls.Add(Me.Label2)
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
@@ -222,12 +230,39 @@ Partial Class Usermngmtfrm
         Me.pnlHeader.Size = New System.Drawing.Size(1100, 60)
         Me.pnlHeader.TabIndex = 3
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(3, 9)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(333, 25)
+        Me.Label3.TabIndex = 13
+        Me.Label3.Text = "👤  User Management Control Center"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Gray
+        Me.Label2.Location = New System.Drawing.Point(40, 34)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(202, 15)
+        Me.Label2.TabIndex = 12
+        Me.Label2.Text = "Account Records and Access Control"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'btnDelete
         '
+        Me.btnDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDelete.BackColor = System.Drawing.Color.FromArgb(CType(CType(187, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(78, Byte), Integer))
         Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDelete.ForeColor = System.Drawing.Color.White
-        Me.btnDelete.Location = New System.Drawing.Point(840, 11)
+        Me.btnDelete.Location = New System.Drawing.Point(882, 11)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(100, 30)
         Me.btnDelete.TabIndex = 5
@@ -236,10 +271,11 @@ Partial Class Usermngmtfrm
         '
         'btnApprove
         '
+        Me.btnApprove.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApprove.BackColor = System.Drawing.Color.FromArgb(CType(CType(214, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(120, Byte), Integer))
         Me.btnApprove.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnApprove.ForeColor = System.Drawing.Color.White
-        Me.btnApprove.Location = New System.Drawing.Point(730, 11)
+        Me.btnApprove.Location = New System.Drawing.Point(767, 11)
         Me.btnApprove.Name = "btnApprove"
         Me.btnApprove.Size = New System.Drawing.Size(100, 30)
         Me.btnApprove.TabIndex = 4
@@ -248,11 +284,12 @@ Partial Class Usermngmtfrm
         '
         'btnAdd
         '
+        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAdd.BackColor = System.Drawing.Color.FromArgb(CType(CType(137, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAdd.ForeColor = System.Drawing.Color.White
-        Me.btnAdd.Location = New System.Drawing.Point(620, 11)
+        Me.btnAdd.Location = New System.Drawing.Point(652, 11)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(100, 30)
         Me.btnAdd.TabIndex = 2
@@ -300,6 +337,7 @@ Partial Class Usermngmtfrm
         Me.statusStrip1.ResumeLayout(False)
         Me.statusStrip1.PerformLayout()
         Me.pnlHeader.ResumeLayout(False)
+        Me.pnlHeader.PerformLayout()
         Me.pnlToolbar.ResumeLayout(False)
         Me.pnlToolbar.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -314,5 +352,9 @@ Partial Class Usermngmtfrm
     Private WithEvents btnApprove As Button
     Private WithEvents btnAdd As Button
     Private WithEvents pnlToolbar As Panel
+
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+
 End Class

@@ -117,4 +117,20 @@ Public Class paymentfrm
             closeConn()
         End Try
     End Sub
+
+
+    Private Sub txtSearchStudent_Enter(sender As Object, e As EventArgs) Handles txtSearchStudent.Enter
+        If txtSearchStudent.Text = "Search student name or ID" Then
+            txtSearchStudent.Text = ""
+            txtSearchStudent.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtSearchStudent_Leave(sender As Object, e As EventArgs) Handles txtSearchStudent.Leave
+        If String.IsNullOrWhiteSpace(txtSearchStudent.Text) Then
+            txtSearchStudent.Text = "Search student name or ID"
+            txtSearchStudent.ForeColor = Color.Gray
+        End If
+    End Sub
+
 End Class

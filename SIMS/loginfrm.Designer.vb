@@ -161,11 +161,13 @@ Partial Class loginfrm
         '
         Me.txtUsername.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsername.ForeColor = System.Drawing.Color.Gray
         Me.txtUsername.Location = New System.Drawing.Point(41, 201)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(268, 27)
-        Me.txtUsername.TabIndex = 2
+        Me.txtUsername.Size = New System.Drawing.Size(268, 25)
+        Me.txtUsername.TabIndex = 1
+        Me.txtUsername.Text = " Username"
         '
         'lblPass
         '
@@ -182,11 +184,11 @@ Partial Class loginfrm
         '
         Me.txtPassword.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtPassword.Location = New System.Drawing.Point(41, 258)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
-        Me.txtPassword.Size = New System.Drawing.Size(268, 27)
+        Me.txtPassword.Size = New System.Drawing.Size(268, 25)
         Me.txtPassword.TabIndex = 4
         '
         'btnLogin

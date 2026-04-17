@@ -20,28 +20,74 @@ $result = $conn->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcements</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css'); ?>">
 </head>
 <body>
-    <div class="container">
-        <h2>Announcements</h2>
+    <div class="dashboard-layout">
 
-        <?php if ($result && $result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="card">
-                    <h3><?php echo htmlspecialchars($row['title']); ?></h3>
-                    <p><?php echo nl2br(htmlspecialchars($row['content'])); ?></p>
-                    <small>
-                        Posted by: <?php echo htmlspecialchars($row['posted_by'] ?? 'Unknown'); ?>
-                        | Date: <?php echo htmlspecialchars($row['date_posted']); ?>
-                    </small>
+        <!-- Sidebar (optional kung meron ka na sa ibang pages) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">Enrollment System</div>
+                <div class="sidebar-tagline">Student Portal</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.php">Dashboard</a>
+                <a href="announcements.php" class="active">Announcements</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Topbar -->
+            <div class="topbar">
+                <div class="topbar-title">Announcements</div>
+            </div>
+
+            <!-- Page Body -->
+            <div class="page-body">
+
+                <div class="page-header">
+                    <h1>Latest Announcements</h1>
+                    <p>Stay updated with important notices</p>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No announcements available.</p>
-        <?php endif; ?>
 
-        <p><a href="dashboard.php">Back to Dashboard</a></p>
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">
+                                        <?php echo htmlspecialchars($row['title']); ?>
+                                    </div>
+                                    <div class="card-subtitle">
+                                        Posted by: <?php echo htmlspecialchars($row['posted_by'] ?? 'Unknown'); ?>
+                                    </div>
+                                </div>
+                                <span class="badge badge-maroon">
+                                    <?php echo htmlspecialchars($row['date_posted']); ?>
+                                </span>
+                            </div>
+
+                            <p style="white-space: pre-line;">
+                                <?php echo nl2br(htmlspecialchars($row['content'])); ?>
+                            </p>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <div class="alert alert-info">
+                        No announcements available.
+                    </div>
+                <?php endif; ?>
+
+                <a href="dashboard.php" class="btn btn-secondary mt-2">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

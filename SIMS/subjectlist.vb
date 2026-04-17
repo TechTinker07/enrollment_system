@@ -157,4 +157,8 @@ Public Class subjectlist
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
 
     End Sub
+
+    Private Sub dgvSubjects_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSubjects.CellContentClick
+
+    End Sub
 End Class

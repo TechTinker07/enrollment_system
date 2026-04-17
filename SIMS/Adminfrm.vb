@@ -13,28 +13,33 @@
         AddHandler btnLogout.Click, AddressOf btnLogout_Click
 
         ' DEFAULT VIEW: Ipakita agad ang Dashboard pagka-load
-        OpenChildForm(New dashboardadmin())
+        OpenChildForm(New dashboardadmin()) '
     End Sub
 
     ' 2. CHILD FORM MANAGER (The Engine)
     Private Sub OpenChildForm(ByVal childForm As Form)
-        If pnlMain.Controls.Count > 0 Then
-            For Each ctrl As Control In pnlMain.Controls
-                If TypeOf ctrl Is Form Then
-                    DirectCast(ctrl, Form).Close()
-                    ctrl.Dispose()
-                End If
-            Next
-            pnlMain.Controls.Clear()
-        End If
+        Try
+            If pnlMain.Controls.Count > 0 Then
+                For Each ctrl As Control In pnlMain.Controls
+                    If TypeOf ctrl Is Form Then
+                        DirectCast(ctrl, Form).Close()
+                        ctrl.Dispose()
+                    End If
+                Next
+                pnlMain.Controls.Clear()
+            End If
 
-        childForm.TopLevel = False
-        childForm.FormBorderStyle = FormBorderStyle.None
-        childForm.Dock = DockStyle.Fill
+            childForm.TopLevel = False
+            childForm.FormBorderStyle = FormBorderStyle.None
+            childForm.Dock = DockStyle.Fill
 
-        pnlMain.Controls.Add(childForm)
-        childForm.Show()
+            pnlMain.Controls.Add(childForm)
+            childForm.Show()
+        Catch ex As Exception
+            MessageBox.Show("Unable to open module: " & ex.Message, "Admin Module Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
+
 
     ' 3. BUTTON ACTIONS (Removed 'Handles' to stop the errors)
 

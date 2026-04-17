@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Studentinfofrm
     Inherits System.Windows.Forms.Form
 
@@ -9,8 +9,11 @@ Partial Class Studentinfofrm
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Studentinfofrm))
         Me.lblSearch = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -41,6 +44,7 @@ Partial Class Studentinfofrm
         'txtSearch
         '
         Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtSearch.Location = New System.Drawing.Point(167, 28)
         Me.txtSearch.Name = "txtSearch"
@@ -49,47 +53,68 @@ Partial Class Studentinfofrm
         '
         'dgvStudents
         '
+        Me.dgvStudents.AllowUserToAddRows = False
+        Me.dgvStudents.AllowUserToDeleteRows = False
+        Me.dgvStudents.AllowUserToResizeColumns = False
+        Me.dgvStudents.AllowUserToResizeRows = False
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.dgvStudents.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
         Me.dgvStudents.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvStudents.BackgroundColor = System.Drawing.Color.White
         Me.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvStudents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvStudents.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvStudents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle12
+        Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvStudents.DefaultCellStyle = DataGridViewCellStyle13
         Me.dgvStudents.EnableHeadersVisualStyles = False
-        Me.dgvStudents.Location = New System.Drawing.Point(23, 194)
+        Me.dgvStudents.GridColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
+        Me.dgvStudents.Location = New System.Drawing.Point(15, 194)
         Me.dgvStudents.MultiSelect = False
         Me.dgvStudents.Name = "dgvStudents"
         Me.dgvStudents.ReadOnly = True
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(201, Byte), Integer), CType(CType(208, Byte), Integer))
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvStudents.RowHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.dgvStudents.RowHeadersVisible = False
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.dgvStudents.RowsDefaultCellStyle = DataGridViewCellStyle15
         Me.dgvStudents.RowTemplate.Height = 40
         Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvStudents.Size = New System.Drawing.Size(874, 527)
+        Me.dgvStudents.Size = New System.Drawing.Size(885, 527)
         Me.dgvStudents.TabIndex = 3
         '
         'lblCount
         '
         Me.lblCount.Font = New System.Drawing.Font("Segoe UI Semibold", 20.0!, System.Drawing.FontStyle.Bold)
         Me.lblCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.lblCount.Location = New System.Drawing.Point(785, 15)
+        Me.lblCount.Location = New System.Drawing.Point(785, 18)
         Me.lblCount.Name = "lblCount"
-        Me.lblCount.Size = New System.Drawing.Size(30, 39)
+        Me.lblCount.Size = New System.Drawing.Size(80, 39)
         Me.lblCount.TabIndex = 4
         Me.lblCount.Text = "0"
+        Me.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label1
         '
@@ -111,7 +136,7 @@ Partial Class Studentinfofrm
         Me.pnlStud.Controls.Add(Me.Label3)
         Me.pnlStud.Location = New System.Drawing.Point(-1, 0)
         Me.pnlStud.Name = "pnlStud"
-        Me.pnlStud.Size = New System.Drawing.Size(914, 82)
+        Me.pnlStud.Size = New System.Drawing.Size(914, 70)
         Me.pnlStud.TabIndex = 6
         '
         'PictureBox1
@@ -130,7 +155,7 @@ Partial Class Studentinfofrm
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Gray
-        Me.Label2.Location = New System.Drawing.Point(47, 45)
+        Me.Label2.Location = New System.Drawing.Point(47, 38)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(186, 15)
         Me.Label2.TabIndex = 11
@@ -142,7 +167,7 @@ Partial Class Studentinfofrm
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(44, 20)
+        Me.Label3.Location = New System.Drawing.Point(44, 13)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(186, 25)
         Me.Label3.TabIndex = 10
@@ -158,9 +183,9 @@ Partial Class Studentinfofrm
         Me.pnlInfo.Controls.Add(Me.lblSearch)
         Me.pnlInfo.Controls.Add(Me.Label1)
         Me.pnlInfo.Controls.Add(Me.lblCount)
-        Me.pnlInfo.Location = New System.Drawing.Point(43, 98)
+        Me.pnlInfo.Location = New System.Drawing.Point(37, 98)
         Me.pnlInfo.Name = "pnlInfo"
-        Me.pnlInfo.Size = New System.Drawing.Size(839, 81)
+        Me.pnlInfo.Size = New System.Drawing.Size(845, 81)
         Me.pnlInfo.TabIndex = 7
         '
         'Studentinfofrm
@@ -191,3 +216,4 @@ Partial Class Studentinfofrm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents pnlInfo As Panel
 End Class
+

@@ -125,17 +125,4 @@ Public Class Usermngmtfrm
         End If
     End Sub
 
-    Private Sub lblSearch_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub dgvUsers_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
-
-    End Sub
-
-    Private Sub dgvUsers_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs)
-
-    End Sub
-
-
 End Class

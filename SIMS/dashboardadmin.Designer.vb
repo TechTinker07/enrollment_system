@@ -17,9 +17,9 @@ Partial Class dashboardadmin
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dashboardadmin))
         Me.pnlHeader = New System.Windows.Forms.Panel()
-        Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlMain = New System.Windows.Forms.Panel()
         Me.cardCourses = New System.Windows.Forms.Panel()
         Me.lblCourseVal = New System.Windows.Forms.Label()
@@ -38,6 +38,9 @@ Partial Class dashboardadmin
         Me.cardStudents = New System.Windows.Forms.Panel()
         Me.lblStudentVal = New System.Windows.Forms.Label()
         Me.lblStudentTitle = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.pnlHeader.SuspendLayout()
         Me.pnlMain.SuspendLayout()
         Me.cardCourses.SuspendLayout()
@@ -46,32 +49,24 @@ Partial Class dashboardadmin
         Me.cardPending.SuspendLayout()
         Me.cardRevenue.SuspendLayout()
         Me.cardStudents.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlHeader
         '
-        Me.pnlHeader.BackColor = System.Drawing.Color.White
-        Me.pnlHeader.Controls.Add(Me.lblTitle)
+        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.pnlHeader.Controls.Add(Me.PictureBox1)
+        Me.pnlHeader.Controls.Add(Me.Label2)
+        Me.pnlHeader.Controls.Add(Me.Label3)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
         Me.pnlHeader.Size = New System.Drawing.Size(1264, 70)
         Me.pnlHeader.TabIndex = 1
         '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Segoe UI Semibold", 15.75!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64)
-        Me.lblTitle.Location = New System.Drawing.Point(18, 20)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(288, 30)
-        Me.lblTitle.TabIndex = 0
-        Me.lblTitle.Text = "ADMINISTRATOR DASHBOARD"
-        '
         'pnlMain
         '
-        Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(244, 246, 249)
+        Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.pnlMain.Controls.Add(Me.cardCourses)
         Me.pnlMain.Controls.Add(Me.cardUsers)
         Me.pnlMain.Controls.Add(Me.lblGridTitle)
@@ -88,7 +83,7 @@ Partial Class dashboardadmin
         '
         'cardCourses
         '
-        Me.cardCourses.BackColor = System.Drawing.Color.FromArgb(23, 162, 184)
+        Me.cardCourses.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(162, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.cardCourses.Controls.Add(Me.lblCourseVal)
         Me.cardCourses.Controls.Add(Me.lblCourseTitle)
         Me.cardCourses.Location = New System.Drawing.Point(1015, 23)
@@ -123,7 +118,7 @@ Partial Class dashboardadmin
         '
         'cardUsers
         '
-        Me.cardUsers.BackColor = System.Drawing.Color.FromArgb(220, 53, 69)
+        Me.cardUsers.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.cardUsers.Controls.Add(Me.lblUserVal)
         Me.cardUsers.Controls.Add(Me.lblUserTitle)
         Me.cardUsers.Location = New System.Drawing.Point(767, 23)
@@ -160,7 +155,7 @@ Partial Class dashboardadmin
         '
         Me.lblGridTitle.AutoSize = True
         Me.lblGridTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblGridTitle.ForeColor = System.Drawing.Color.FromArgb(52, 58, 64)
+        Me.lblGridTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lblGridTitle.Location = New System.Drawing.Point(23, 168)
         Me.lblGridTitle.Name = "lblGridTitle"
         Me.lblGridTitle.Size = New System.Drawing.Size(183, 21)
@@ -178,9 +173,9 @@ Partial Class dashboardadmin
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.75!)
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(0, 123, 255)
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(255, Byte), Integer))
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvRecentPayments.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvRecentPayments.Location = New System.Drawing.Point(23, 203)
         Me.dgvRecentPayments.Name = "dgvRecentPayments"
@@ -191,7 +186,7 @@ Partial Class dashboardadmin
         '
         'cardPending
         '
-        Me.cardPending.BackColor = System.Drawing.Color.FromArgb(255, 193, 7)
+        Me.cardPending.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
         Me.cardPending.Controls.Add(Me.lblPendingVal)
         Me.cardPending.Controls.Add(Me.lblPendingTitle)
         Me.cardPending.Location = New System.Drawing.Point(519, 23)
@@ -203,7 +198,7 @@ Partial Class dashboardadmin
         '
         Me.lblPendingVal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblPendingVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblPendingVal.ForeColor = System.Drawing.Color.FromArgb(52, 58, 64)
+        Me.lblPendingVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lblPendingVal.Location = New System.Drawing.Point(0, 40)
         Me.lblPendingVal.Name = "lblPendingVal"
         Me.lblPendingVal.Size = New System.Drawing.Size(230, 75)
@@ -215,7 +210,7 @@ Partial Class dashboardadmin
         '
         Me.lblPendingTitle.Dock = System.Windows.Forms.DockStyle.Top
         Me.lblPendingTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblPendingTitle.ForeColor = System.Drawing.Color.FromArgb(52, 58, 64)
+        Me.lblPendingTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lblPendingTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblPendingTitle.Name = "lblPendingTitle"
         Me.lblPendingTitle.Padding = New System.Windows.Forms.Padding(0, 10, 0, 0)
@@ -226,7 +221,7 @@ Partial Class dashboardadmin
         '
         'cardRevenue
         '
-        Me.cardRevenue.BackColor = System.Drawing.Color.FromArgb(40, 167, 69)
+        Me.cardRevenue.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(167, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.cardRevenue.Controls.Add(Me.lblRevenueVal)
         Me.cardRevenue.Controls.Add(Me.lblRevenueTitle)
         Me.cardRevenue.Location = New System.Drawing.Point(271, 23)
@@ -261,7 +256,7 @@ Partial Class dashboardadmin
         '
         'cardStudents
         '
-        Me.cardStudents.BackColor = System.Drawing.Color.FromArgb(0, 123, 255)
+        Me.cardStudents.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.cardStudents.Controls.Add(Me.lblStudentVal)
         Me.cardStudents.Controls.Add(Me.lblStudentTitle)
         Me.cardStudents.Location = New System.Drawing.Point(23, 23)
@@ -294,6 +289,41 @@ Partial Class dashboardadmin
         Me.lblStudentTitle.Text = "TOTAL STUDENTS"
         Me.lblStudentTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(5, 22)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(28, 27)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 18
+        Me.PictureBox1.TabStop = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Gray
+        Me.Label2.Location = New System.Drawing.Point(39, 39)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(186, 15)
+        Me.Label2.TabIndex = 17
+        Me.Label2.Text = "View and search enrolled students"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(36, 14)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(229, 25)
+        Me.Label3.TabIndex = 16
+        Me.Label3.Text = "Administrator Dashboard"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'dashboardadmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -315,12 +345,12 @@ Partial Class dashboardadmin
         Me.cardPending.ResumeLayout(False)
         Me.cardRevenue.ResumeLayout(False)
         Me.cardStudents.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel
-    Friend WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents pnlMain As System.Windows.Forms.Panel
     Friend WithEvents cardStudents As System.Windows.Forms.Panel
     Friend WithEvents lblStudentVal As System.Windows.Forms.Label
@@ -339,5 +369,7 @@ Partial Class dashboardadmin
     Friend WithEvents cardCourses As System.Windows.Forms.Panel
     Friend WithEvents lblCourseVal As System.Windows.Forms.Label
     Friend WithEvents lblCourseTitle As System.Windows.Forms.Label
-
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
 End Class
