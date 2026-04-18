@@ -45,7 +45,7 @@
         childForm.Show()
 
         ' I-update ang header title base sa pangalan ng binuksang form
-        lblHeader.Text = "Registrar - " & childForm.Text
+        ' lblHeader.Text = "Registrar - " & childForm.Text
     End Sub
 
     ' 3. BUTTON ACTIONS: Mga function na tatawag sa specific forms
@@ -90,5 +90,4 @@
             Me.Close() ' Isinasara ang form at tinatapos ang session
         End If
     End Sub
-
 End Class
