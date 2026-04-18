@@ -16,11 +16,11 @@ Partial Class schedulelist
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(schedulelist))
         Me.pnlInputs = New System.Windows.Forms.Panel()
         Me.lblTo = New System.Windows.Forms.Label()
@@ -98,7 +98,7 @@ Partial Class schedulelist
         Me.lblTo.Name = "lblTo"
         Me.lblTo.Size = New System.Drawing.Size(22, 21)
         Me.lblTo.TabIndex = 33
-        Me.lblTo.Text = "to"
+        Me.lblTo.Text = "TO"
         '
         'Label8
         '
@@ -107,7 +107,7 @@ Partial Class schedulelist
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(100, 20)
         Me.Label8.TabIndex = 32
-        Me.Label8.Text = "Time"
+        Me.Label8.Text = "TIME"
         '
         'btnSat
         '
@@ -194,7 +194,7 @@ Partial Class schedulelist
         Me.lblDay.Name = "lblDay"
         Me.lblDay.Size = New System.Drawing.Size(100, 23)
         Me.lblDay.TabIndex = 25
-        Me.lblDay.Text = "Day"
+        Me.lblDay.Text = "DAY"
         '
         'lblRoom
         '
@@ -203,10 +203,11 @@ Partial Class schedulelist
         Me.lblRoom.Name = "lblRoom"
         Me.lblRoom.Size = New System.Drawing.Size(100, 23)
         Me.lblRoom.TabIndex = 23
-        Me.lblRoom.Text = "Room"
+        Me.lblRoom.Text = "ROOM"
         '
         'cmbRoom
         '
+        Me.cmbRoom.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.cmbRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbRoom.Font = New System.Drawing.Font("Segoe UI", 11.0!)
         Me.cmbRoom.Location = New System.Drawing.Point(25, 178)
@@ -221,10 +222,11 @@ Partial Class schedulelist
         Me.lblSection.Name = "lblSection"
         Me.lblSection.Size = New System.Drawing.Size(100, 23)
         Me.lblSection.TabIndex = 22
-        Me.lblSection.Text = "Section"
+        Me.lblSection.Text = "SECTION"
         '
         'cmbSection
         '
+        Me.cmbSection.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.cmbSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbSection.Font = New System.Drawing.Font("Segoe UI", 11.0!)
         Me.cmbSection.Location = New System.Drawing.Point(185, 91)
@@ -263,10 +265,11 @@ Partial Class schedulelist
         Me.lblSubj.Name = "lblSubj"
         Me.lblSubj.Size = New System.Drawing.Size(100, 23)
         Me.lblSubj.TabIndex = 1
-        Me.lblSubj.Text = "Subject"
+        Me.lblSubj.Text = "SUBJECT"
         '
         'cmbSubjects
         '
+        Me.cmbSubjects.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.cmbSubjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbSubjects.Font = New System.Drawing.Font("Segoe UI", 11.0!)
         Me.cmbSubjects.Location = New System.Drawing.Point(22, 91)
@@ -341,8 +344,8 @@ Partial Class schedulelist
         '
         'dgvSchedules
         '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.dgvSchedules.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.dgvSchedules.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvSchedules.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -350,41 +353,41 @@ Partial Class schedulelist
         Me.dgvSchedules.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvSchedules.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.dgvSchedules.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(246, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
-        Me.dgvSchedules.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(246, Byte), Integer))
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
+        Me.dgvSchedules.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.dgvSchedules.ColumnHeadersHeight = 38
         Me.dgvSchedules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(81, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvSchedules.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(81, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvSchedules.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgvSchedules.EnableHeadersVisualStyles = False
         Me.dgvSchedules.GridColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.dgvSchedules.Location = New System.Drawing.Point(362, 140)
+        Me.dgvSchedules.Location = New System.Drawing.Point(362, 136)
         Me.dgvSchedules.Name = "dgvSchedules"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvSchedules.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvSchedules.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.dgvSchedules.RowHeadersVisible = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.dgvSchedules.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.dgvSchedules.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.dgvSchedules.RowTemplate.Height = 30
         Me.dgvSchedules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSchedules.Size = New System.Drawing.Size(735, 528)
+        Me.dgvSchedules.Size = New System.Drawing.Size(735, 540)
         Me.dgvSchedules.TabIndex = 0
         '
         'Panel1
@@ -418,7 +421,7 @@ Partial Class schedulelist
         Me.Label2.ForeColor = System.Drawing.Color.Gray
         Me.Label2.Location = New System.Drawing.Point(70, 49)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(239, 15)
+        Me.Label2.Size = New System.Drawing.Size(240, 15)
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Class Schedules and Time Slot Management"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter

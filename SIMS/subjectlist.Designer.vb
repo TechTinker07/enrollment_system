@@ -93,8 +93,8 @@ Partial Class subjectlist
         '
         'Label4
         '
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(25, 270)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(100, 23)
@@ -114,8 +114,8 @@ Partial Class subjectlist
         '
         'lblType
         '
-        Me.lblType.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.lblType.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.lblType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.lblType.Location = New System.Drawing.Point(190, 201)
         Me.lblType.Name = "lblType"
         Me.lblType.Size = New System.Drawing.Size(100, 23)
@@ -159,8 +159,8 @@ Partial Class subjectlist
         '
         'lblCode
         '
-        Me.lblCode.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblCode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.lblCode.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.lblCode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.lblCode.Location = New System.Drawing.Point(25, 65)
         Me.lblCode.Name = "lblCode"
         Me.lblCode.Size = New System.Drawing.Size(100, 23)
@@ -179,8 +179,8 @@ Partial Class subjectlist
         '
         'lblSubjectTitle
         '
-        Me.lblSubjectTitle.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblSubjectTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.lblSubjectTitle.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.lblSubjectTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.lblSubjectTitle.Location = New System.Drawing.Point(25, 132)
         Me.lblSubjectTitle.Name = "lblSubjectTitle"
         Me.lblSubjectTitle.Size = New System.Drawing.Size(100, 23)
@@ -199,8 +199,8 @@ Partial Class subjectlist
         '
         'lblUnits
         '
-        Me.lblUnits.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblUnits.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.lblUnits.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.lblUnits.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.lblUnits.Location = New System.Drawing.Point(25, 201)
         Me.lblUnits.Name = "lblUnits"
         Me.lblUnits.Size = New System.Drawing.Size(100, 23)

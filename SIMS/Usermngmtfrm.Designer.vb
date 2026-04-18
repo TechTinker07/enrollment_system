@@ -136,6 +136,7 @@ Partial Class Usermngmtfrm
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvUsers.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvUsers.RowHeadersVisible = False
+        Me.dgvUsers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         Me.dgvUsers.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvUsers.RowTemplate.Height = 30
