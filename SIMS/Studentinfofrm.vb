@@ -30,7 +30,7 @@ Public Class Studentinfofrm
                                  "first_name AS `First Name`, " &
                                  "last_name AS `Last Name`, " &
                                  "email AS `Email`, " &
-                                 "birthdate AS `Birthdate`, " &
+                                 "IFNULL(DATE_FORMAT(birthdate, '%Y-%m-%d'), 'N/A') AS `Birthdate`, " &
                                  "address AS `Address` " &
                                  "FROM students "
 

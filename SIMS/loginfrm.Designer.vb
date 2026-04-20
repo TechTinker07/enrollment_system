@@ -28,7 +28,7 @@ Partial Class loginfrm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chkShowPassword = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblUser = New System.Windows.Forms.Label()
@@ -47,7 +47,7 @@ Partial Class loginfrm
         Me.pnlContainer.Controls.Add(Me.PictureBox1)
         Me.pnlContainer.Controls.Add(Me.Label2)
         Me.pnlContainer.Controls.Add(Me.Label1)
-        Me.pnlContainer.Controls.Add(Me.CheckBox1)
+        Me.pnlContainer.Controls.Add(Me.chkShowPassword)
         Me.pnlContainer.Controls.Add(Me.Button1)
         Me.pnlContainer.Controls.Add(Me.lblTitle)
         Me.pnlContainer.Controls.Add(Me.lblUser)
@@ -108,16 +108,16 @@ Partial Class loginfrm
         Me.Label1.Text = "College of Lycem — S.Y. 2025–2026"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'CheckBox1
+        'chkShowPassword
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.ForeColor = System.Drawing.Color.Gray
-        Me.CheckBox1.Location = New System.Drawing.Point(41, 291)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(102, 17)
-        Me.CheckBox1.TabIndex = 7
-        Me.CheckBox1.Text = "Show Password"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chkShowPassword.AutoSize = True
+        Me.chkShowPassword.ForeColor = System.Drawing.Color.Gray
+        Me.chkShowPassword.Location = New System.Drawing.Point(41, 291)
+        Me.chkShowPassword.Name = "chkShowPassword"
+        Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
+        Me.chkShowPassword.TabIndex = 7
+        Me.chkShowPassword.Text = "Show Password"
+        Me.chkShowPassword.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -187,9 +187,9 @@ Partial Class loginfrm
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtPassword.Location = New System.Drawing.Point(41, 258)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
         Me.txtPassword.Size = New System.Drawing.Size(268, 25)
         Me.txtPassword.TabIndex = 4
+        Me.txtPassword.UseSystemPasswordChar = True
         '
         'btnLogin
         '
@@ -229,7 +229,7 @@ Partial Class loginfrm
     Friend WithEvents txtUsername As TextBox
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents btnLogin As Button
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkShowPassword As CheckBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label

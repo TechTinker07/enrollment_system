@@ -131,6 +131,7 @@ p {
   font-weight: 700;
   line-height: 1.08;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .auth-panel-desc,

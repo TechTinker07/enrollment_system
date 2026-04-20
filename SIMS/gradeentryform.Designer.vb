@@ -32,7 +32,6 @@ Partial Class gradeentryform
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblEnrollID = New System.Windows.Forms.Label()
-        Me.txtEnrollmentID = New System.Windows.Forms.TextBox()
         Me.lblSubject = New System.Windows.Forms.Label()
         Me.cboSubject = New System.Windows.Forms.ComboBox()
         Me.lblGrade = New System.Windows.Forms.Label()
@@ -49,6 +48,7 @@ Partial Class gradeentryform
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cboStudent = New System.Windows.Forms.ComboBox()
         Me.pnlSidebar.SuspendLayout()
         CType(Me.dgvGrades, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -58,10 +58,10 @@ Partial Class gradeentryform
         'pnlSidebar
         '
         Me.pnlSidebar.BackColor = System.Drawing.Color.White
+        Me.pnlSidebar.Controls.Add(Me.cboStudent)
         Me.pnlSidebar.Controls.Add(Me.Label3)
         Me.pnlSidebar.Controls.Add(Me.lblTitle)
         Me.pnlSidebar.Controls.Add(Me.lblEnrollID)
-        Me.pnlSidebar.Controls.Add(Me.txtEnrollmentID)
         Me.pnlSidebar.Controls.Add(Me.lblSubject)
         Me.pnlSidebar.Controls.Add(Me.cboSubject)
         Me.pnlSidebar.Controls.Add(Me.lblGrade)
@@ -108,13 +108,6 @@ Partial Class gradeentryform
         Me.lblEnrollID.Size = New System.Drawing.Size(100, 23)
         Me.lblEnrollID.TabIndex = 1
         Me.lblEnrollID.Text = "STUDENT ID"
-        '
-        'txtEnrollmentID
-        '
-        Me.txtEnrollmentID.Location = New System.Drawing.Point(20, 98)
-        Me.txtEnrollmentID.Name = "txtEnrollmentID"
-        Me.txtEnrollmentID.Size = New System.Drawing.Size(240, 20)
-        Me.txtEnrollmentID.TabIndex = 2
         '
         'lblSubject
         '
@@ -314,6 +307,14 @@ Partial Class gradeentryform
         Me.Label1.Text = "Grade Management"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'cboStudent
+        '
+        Me.cboStudent.FormattingEnabled = True
+        Me.cboStudent.Location = New System.Drawing.Point(24, 106)
+        Me.cboStudent.Name = "cboStudent"
+        Me.cboStudent.Size = New System.Drawing.Size(236, 21)
+        Me.cboStudent.TabIndex = 16
+        '
         'gradeentryform
         '
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer))
@@ -338,7 +339,7 @@ Partial Class gradeentryform
     ' Declarations
     Friend WithEvents pnlSidebar As Panel
     Friend WithEvents lblTitle, lblEnrollID, lblSubject, lblGrade, lblRemarks, lblSearch As Label
-    Friend WithEvents txtEnrollmentID, txtGrade, txtRemarks, txtSearch As TextBox
+    Friend WithEvents txtGrade, txtRemarks, txtSearch As TextBox
     Friend WithEvents cboSubject As ComboBox
     Friend WithEvents btnSave, btnDelete, btnClear As Button
     Friend WithEvents dgvGrades As DataGridView
@@ -347,4 +348,5 @@ Partial Class gradeentryform
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents cboStudent As ComboBox
 End Class

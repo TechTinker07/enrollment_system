@@ -17,7 +17,6 @@
     Private Sub LoadDashboard()
         ' Palitan ang "financedashboard" sa actual name ng Form file mo
         OpenFinanceChild(New financedashboard())
-        lblHeader.Text = "Finance Dashboard Overview"
     End Sub
 
     ' 2. THE ENGINE: SWAPPING FORMS
@@ -42,7 +41,7 @@
         pnlMain.Tag = childForm
         childForm.Show()
 
-        lblHeader.Text = "Finance - " & childForm.Text
+
     End Sub
 
     ' 3. BUTTON ACTIONS
@@ -64,12 +63,16 @@
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs)
         If MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            loginfrm.Show()
+            loginfrm.txtUsername.Clear()
+            loginfrm.txtPassword.Clear()
             Me.Close()
+            loginfrm.Show()
         End If
     End Sub
 
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
 
     End Sub
+
+
 End Class

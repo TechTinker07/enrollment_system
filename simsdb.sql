@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2026 at 12:50 PM
+-- Generation Time: Apr 20, 2026 at 05:14 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,6 +39,30 @@ CREATE TABLE `announcements` (
   `date_posted` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`announcement_id`, `title`, `content`, `priority`, `category`, `target_group`, `valid_until`, `posted_by`, `date_posted`) VALUES
+(4, '[All Students] Enrollment Reminder', 'Please settle remaining balance', 'Normal', 'Finance', 'All Students', '2026-04-17', NULL, '2026-04-09 17:37:59'),
+(5, '[All Students] b', 'bh', 'Critical', 'Finance', 'All Students', '2026-04-21', NULL, '2026-04-13 16:09:33'),
+(6, '[BSIT 1-A] hvhvj', ' n m   ', 'Urgent', 'Academic', 'BSIT 1-A', '2026-04-21', NULL, '2026-04-13 16:09:56'),
+(7, 'Final Exam!', 'Final Exam!', 'Critical', 'Academic', 'All Students', '2026-04-27', 1, '2026-04-20 14:30:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcement_reads`
+--
+
+CREATE TABLE `announcement_reads` (
+  `id` int(11) NOT NULL,
+  `announcement_id` int(11) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT 1,
+  `read_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -59,7 +83,8 @@ CREATE TABLE `billing` (
 --
 
 INSERT INTO `billing` (`billing_id`, `enrollment_id`, `total_amount`, `paid_amount`, `due_date`) VALUES
-(1, 2, 1500.00, 0.00, '2026-05-08');
+(1, 2, 1500.00, 0.00, '2026-05-08'),
+(2, 3, 1500.00, 1500.00, '2026-05-10');
 
 -- --------------------------------------------------------
 
@@ -103,7 +128,8 @@ CREATE TABLE `enrollments` (
 --
 
 INSERT INTO `enrollments` (`enrollment_id`, `student_id`, `course_id`, `school_year`, `semester`, `enrollment_date`, `status`) VALUES
-(2, '2903', 1, '2025-2026', '1st Semester', '2026-04-08', 'enrolled');
+(2, '2903', 1, '2025-2026', '1st Semester', '2026-04-08', 'enrolled'),
+(3, '2026-0001', 1, '2025-2026', '1st Semester', '2026-04-10', 'enrolled');
 
 -- --------------------------------------------------------
 
@@ -122,7 +148,8 @@ CREATE TABLE `enrollment_details` (
 --
 
 INSERT INTO `enrollment_details` (`detail_id`, `enrollment_id`, `schedule_id`) VALUES
-(1, 2, 1);
+(1, 2, 1),
+(2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -149,8 +176,16 @@ CREATE TABLE `payments` (
   `billing_id` int(11) NOT NULL,
   `amount_paid` decimal(10,2) NOT NULL,
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `reference_no` varchar(50) DEFAULT NULL
+  `reference_no` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `billing_id`, `amount_paid`, `payment_date`, `reference_no`) VALUES
+(1, 2, 800.00, '2026-04-09 17:36:00', 'REF-20260410013600'),
+(2, 2, 700.00, '2026-04-09 17:36:24', 'adaa');
 
 -- --------------------------------------------------------
 
@@ -161,6 +196,7 @@ CREATE TABLE `payments` (
 CREATE TABLE `schedules` (
   `schedule_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
+  `faculty_user_id` int(11) DEFAULT NULL,
   `section` varchar(20) DEFAULT NULL,
   `days` varchar(20) DEFAULT NULL,
   `time_start` time DEFAULT NULL,
@@ -172,8 +208,11 @@ CREATE TABLE `schedules` (
 -- Dumping data for table `schedules`
 --
 
-INSERT INTO `schedules` (`schedule_id`, `subject_id`, `section`, `days`, `time_start`, `time_end`, `room`) VALUES
-(1, 2, '', '3', '16:30:59', '17:30:59', 'ROOM 210');
+INSERT INTO `schedules` (`schedule_id`, `subject_id`, `faculty_user_id`, `section`, `days`, `time_start`, `time_end`, `room`) VALUES
+(1, 2, NULL, 'BSIT 1-A', 'M, W, F', '08:00:00', '09:00:00', 'ROOM 210'),
+(2, 6, NULL, 'BSIT 1-A', 'MWF', '18:26:06', '01:32:06', ''),
+(3, 2, NULL, 'BSIT 1-B', 'T, TH', '10:00:00', '11:30:00', 'LAB 1'),
+(4, 4, NULL, 'BSIT 1-B', 'M, T, W, F, S', '23:34:46', '00:34:46', 'ROOM 102');
 
 -- --------------------------------------------------------
 
@@ -196,7 +235,10 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `user_id`, `first_name`, `last_name`, `email`, `birthdate`, `address`) VALUES
-('2903', NULL, 'jb', 'lobrico', 'jblobrico@gmail.com', '2026-04-08', 'sdadasd');
+('1234556', 7, 'JB', 'Lobrico', 'jb@gmail.com', '2026-03-31', 'Makati City'),
+('2026-0001', NULL, 'Juan', 'Dela Cruz', 'juan@example.com', '2005-01-15', 'Sample Address'),
+('2903', NULL, 'jb', 'lobrico', 'jblobrico@gmail.com', '2026-04-08', 'sdadasd'),
+('98080', 8, 'Cherry', 'Cruz', 'stu@gmail.com', '0000-00-00', 'none');
 
 -- --------------------------------------------------------
 
@@ -218,8 +260,11 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`subject_id`, `subject_code`, `subject_title`, `subject_type`, `department`, `units`) VALUES
-(1, 'CPM1001', 'computer programming 1', 'Lecture/Lab', 'Information Technology', 3),
-(2, 'SAD2001', 'SYSTEMDESIGN', 'Lecture', 'Information Technology', 3);
+(2, 'SAD2001', 'SYSTEMDESIGN', 'Lecture', 'Information Technology', 3),
+(3, 'IT101', 'Introduction to Computing', 'Lecture', 'Information Technology', 3),
+(4, 'IT102', 'Programming 1', 'Lecture/Lab', 'Information Technology', 4),
+(5, 'GE101', 'Understanding the Self', 'Lecture', 'General Education', 3),
+(6, 'IT001', 'Integartion', 'Laboratory', 'Information Technology', 3);
 
 -- --------------------------------------------------------
 
@@ -231,10 +276,22 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin','registrar','accounting','student') NOT NULL,
+  `role` enum('admin','registrar','accounting','cashier','faculty','student') NOT NULL,
   `status` enum('pending','verified','blocked') NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `role`, `status`, `created_at`) VALUES
+(1, 'admin1', 'admin123', 'admin', 'verified', '2026-04-09 17:15:27'),
+(2, 'registrar1', 'reg123', 'registrar', 'verified', '2026-04-09 17:15:27'),
+(3, 'accounting1', 'acct123', 'cashier', 'verified', '2026-04-09 17:15:27'),
+(6, 'teacher1', 'teach123', '', 'verified', '2026-04-09 17:24:06'),
+(7, 'jb7', 'jb123', 'student', 'verified', '2026-04-09 17:39:37'),
+(8, 'mama', '12345', 'student', 'pending', '2026-04-19 18:21:17');
 
 --
 -- Indexes for dumped tables
@@ -246,6 +303,12 @@ CREATE TABLE `users` (
 ALTER TABLE `announcements`
   ADD PRIMARY KEY (`announcement_id`),
   ADD KEY `fk_ann_user` (`posted_by`);
+
+--
+-- Indexes for table `announcement_reads`
+--
+ALTER TABLE `announcement_reads`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `billing`
@@ -297,7 +360,8 @@ ALTER TABLE `payments`
 --
 ALTER TABLE `schedules`
   ADD PRIMARY KEY (`schedule_id`),
-  ADD KEY `fk_schedule_subject` (`subject_id`);
+  ADD KEY `fk_schedule_subject` (`subject_id`),
+  ADD KEY `fk_schedule_faculty` (`faculty_user_id`);
 
 --
 -- Indexes for table `students`
@@ -329,13 +393,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `announcement_reads`
+--
+ALTER TABLE `announcement_reads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `billing`
 --
 ALTER TABLE `billing`
-  MODIFY `billing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `billing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -347,13 +417,13 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `enrollments`
 --
 ALTER TABLE `enrollments`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `enrollment_details`
 --
 ALTER TABLE `enrollment_details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `grades`
@@ -365,25 +435,25 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -432,6 +502,7 @@ ALTER TABLE `payments`
 -- Constraints for table `schedules`
 --
 ALTER TABLE `schedules`
+  ADD CONSTRAINT `fk_schedule_faculty` FOREIGN KEY (`faculty_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL,
   ADD CONSTRAINT `fk_schedule_subject` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE CASCADE;
 
 --

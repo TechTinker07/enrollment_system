@@ -61,8 +61,13 @@ Public Class gradeslistfrm
             End If
 
             Dim cmdObj As New MySqlCommand(sql, conn)
-            cmdObj.Parameters.AddWithValue("@search", "%" & txtSearch.Text & "%")
-            cmdObj.Parameters.AddWithValue("@subid", cboSubjectFilter.SelectedValue)
+            If Not String.IsNullOrWhiteSpace(txtSearch.Text) Then
+                cmdObj.Parameters.AddWithValue("@search", "%" & txtSearch.Text & "%")
+            End If
+
+            If cboSubjectFilter.SelectedValue IsNot Nothing AndAlso Val(cboSubjectFilter.SelectedValue) > 0 Then
+                cmdObj.Parameters.AddWithValue("@subid", cboSubjectFilter.SelectedValue)
+            End If
 
             Dim adp As New MySqlDataAdapter(cmdObj)
             Dim dt As New DataTable
@@ -70,9 +75,12 @@ Public Class gradeslistfrm
             dgvGradesList.DataSource = dt
 
             ' Modern Header Styling (Rename or tweak columns if needed)
-            dgvGradesList.Columns("Grade").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            dgvGradesList.Columns("Remarks").DefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.5!)
-
+            If dgvGradesList.Columns.Contains("Grade") Then
+                dgvGradesList.Columns("Grade").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End If
+            If dgvGradesList.Columns.Contains("Remarks") Then
+                dgvGradesList.Columns("Remarks").DefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.5!)
+            End If
         Catch ex As Exception
             MsgBox("Error loading list: " & ex.Message)
         Finally

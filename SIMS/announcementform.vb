@@ -1,21 +1,21 @@
-Imports MySql.Data.MySqlClient
+Imports System.Data.SqlClient
 Imports System.Drawing.Drawing2D
+Imports MySql.Data.MySqlClient
 
 Public Class announcementform
     Private ReadOnly standaloneHeaderTop As Integer = 106
     Private ReadOnly embeddedHeaderTop As Integer = 106
 
-    ' Sub para i-load ang mga anunsyo sa DataGridView
     Private Sub LoadAnnouncements()
         Try
             openConn()
-            Dim query As String = "SELECT title AS 'Title', priority AS 'Priority', category AS 'Category', " &
-                                  "target_group AS 'Send To', valid_until AS 'Valid Until', date_posted AS 'Date Posted' " &
-                                  "FROM announcements ORDER BY date_posted DESC"
+            Dim query As String =
+                "SELECT title AS 'Title', priority AS 'Priority', category AS 'Category', " &
+                "target_group AS 'Send To', valid_until AS 'Valid Until', date_posted AS 'Date Posted' " &
+                "FROM announcements ORDER BY date_posted DESC"
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dt As New DataTable()
             adapter.Fill(dt)
-
             dgvAnnouncements.DataSource = dt
         Catch ex As Exception
             MsgBox("Error loading announcements: " & ex.Message)
@@ -24,10 +24,11 @@ Public Class announcementform
         End Try
     End Sub
 
-    ' Event pagka-load ng form
     Private Sub announcementform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadAnnouncements()
 
+        cmbRecipient.Items.Clear()
+        cmbRecipient.Items.AddRange(New Object() {"All Students", "BSIT 1-A", "BSIT 1-B", "BSIT 2-A", "BSTM 1-A", "Faculty"})
         If cmbRecipient.Items.Count > 0 Then cmbRecipient.SelectedIndex = 0
         If ComboBox1.Items.Count > 0 Then ComboBox1.SelectedIndex = 0
         If ComboBox2.Items.Count > 0 Then ComboBox2.SelectedIndex = 0
@@ -38,12 +39,11 @@ Public Class announcementform
         RefreshAnnouncementMetrics()
     End Sub
 
-    ' Logic para sa POST button
     Private Sub btnPost_Click(sender As Object, e As EventArgs) Handles btnPost.Click
-        If String.IsNullOrWhiteSpace(txtTitle.Text) Or
-           String.IsNullOrWhiteSpace(txtMessage.Text) Or
-           ComboBox1.SelectedIndex = -1 Or
-           ComboBox2.SelectedIndex = -1 Or
+        If String.IsNullOrWhiteSpace(txtTitle.Text) OrElse
+           String.IsNullOrWhiteSpace(txtMessage.Text) OrElse
+           ComboBox1.SelectedIndex = -1 OrElse
+           ComboBox2.SelectedIndex = -1 OrElse
            cmbRecipient.SelectedIndex = -1 Then
             MsgBox("Please complete the title, message, priority, category, and recipient fields.", MsgBoxStyle.Exclamation)
             Return
@@ -51,24 +51,38 @@ Public Class announcementform
 
         Try
             openConn()
-            Dim query As String = "INSERT INTO announcements (title, content, priority, category, target_group, valid_until, posted_by, date_posted) " &
-                                  "VALUES (@title, @content, @priority, @category, @target, @validUntil, NULL, NOW())"
+
+            Dim postedBy As Object = DBNull.Value
+            If loginfrm IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(loginfrm.txtUsername.Text) Then
+                Using userCmd As New MySqlCommand("SELECT user_id FROM users WHERE username = @username LIMIT 1", conn)
+                    userCmd.Parameters.AddWithValue("@username", loginfrm.txtUsername.Text.Trim())
+                    Dim userId = userCmd.ExecuteScalar()
+                    If userId IsNot Nothing Then
+                        postedBy = userId
+                    End If
+                End Using
+            End If
+
+            Dim query As String =
+                "INSERT INTO announcements (title, content, priority, category, target_group, valid_until, posted_by, date_posted) " &
+                "VALUES (@title, @content, @priority, @category, @target, @validUntil, @postedBy, NOW())"
 
             Using sqlCmd As MySqlCommand = cmd(query)
-                sqlCmd.Parameters.AddWithValue("@title", "[" & cmbRecipient.Text & "] " & txtTitle.Text)
-                sqlCmd.Parameters.AddWithValue("@content", txtMessage.Text)
-                sqlCmd.Parameters.AddWithValue("@priority", ComboBox1.Text)
-                sqlCmd.Parameters.AddWithValue("@category", ComboBox2.Text)
-                sqlCmd.Parameters.AddWithValue("@target", cmbRecipient.Text)
+                sqlCmd.Parameters.AddWithValue("@title", txtTitle.Text.Trim())
+                sqlCmd.Parameters.AddWithValue("@content", txtMessage.Text.Trim())
+                sqlCmd.Parameters.AddWithValue("@priority", ComboBox1.Text.Trim())
+                sqlCmd.Parameters.AddWithValue("@category", ComboBox2.Text.Trim())
+                sqlCmd.Parameters.AddWithValue("@target", cmbRecipient.Text.Trim())
                 sqlCmd.Parameters.AddWithValue("@validUntil", DateTimePicker1.Value.ToString("yyyy-MM-dd"))
-
+                sqlCmd.Parameters.AddWithValue("@postedBy", postedBy)
                 sqlCmd.ExecuteNonQuery()
-                MsgBox("Announcement posted successfully!", MsgBoxStyle.Information)
             End Using
 
+            MsgBox("Announcement posted successfully!", MsgBoxStyle.Information)
             LoadAnnouncements()
             RefreshAnnouncementMetrics()
             ClearFields()
+
         Catch ex As Exception
             MsgBox("Error posting announcement: " & ex.Message)
         Finally
@@ -76,7 +90,6 @@ Public Class announcementform
         End Try
     End Sub
 
-    ' Logic para sa CLEAR button
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         ClearFields()
     End Sub
@@ -165,6 +178,4 @@ Public Class announcementform
         targetPanel.Region = New Region(path)
         path.Dispose()
     End Sub
-
-
 End Class

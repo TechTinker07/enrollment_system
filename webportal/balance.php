@@ -20,123 +20,448 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-/* ✅ TODAY (ilabas sa loop para efficient) */
 $today = date('Y-m-d');
-?>
 
+/* Compute summary totals */
+$rows = [];
+$total_billed  = 0;
+$total_paid    = 0;
+$total_balance = 0;
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $rows[]         = $row;
+        $total_billed  += $row['total_amount'];
+        $total_paid    += $row['paid_amount'];
+        $total_balance += $row['balance'];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balance Inquiry</title>
-    <link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css'); ?>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balance Inquiry — SIMS Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --maroon:        #800000;
+      --maroon-dark:   #5a0000;
+      --maroon-pale:   #fdf0f0;
+      --maroon-border: #f0dede;
+      --bg:            #f9f5f5;
+      --white:         #ffffff;
+      --border:        #f0e8e8;
+      --text:          #1a1a1a;
+      --text-sub:      #555;
+      --text-muted:    #aaa;
+      --green:         #166534;
+      --green-bg:      #f0fdf4;
+      --green-border:  #bbf7d0;
+      --red:           #c53030;
+      --red-bg:        #fff5f5;
+      --red-border:    #fca5a5;
+      --amber:         #92400e;
+      --amber-bg:      #fffbeb;
+      --amber-border:  #fde68a;
+    }
+
+    html, body { min-height: 100%; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+    .page { display: flex; min-height: 100vh; }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 240px; background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: fixed; height: 100vh; z-index: 10;
+    }
+
+    .sidebar-logo {
+      display: flex; align-items: center; gap: 10px;
+      padding: 24px 24px 20px;
+      border-bottom: 1px solid #f5eded;
+    }
+
+    .logo-icon {
+      width: 36px; height: 36px; background: var(--maroon);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg { display: block; }
+    .logo-abbr  { font-size: 12px; font-weight: 700; color: var(--maroon); letter-spacing: .1em; text-transform: uppercase; }
+    .logo-sub   { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+    .nav-links { list-style: none; padding: 14px 12px; flex: 1; }
+    .nav-links li { margin-bottom: 2px; }
+
+    .nav-links a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px;
+      text-decoration: none; color: #555;
+      font-size: 13.5px; font-weight: 400;
+      transition: background .15s, color .15s;
+    }
+
+    .nav-links a svg { stroke: #ccc; transition: stroke .15s; }
+    .nav-links a:hover { background: var(--maroon-pale); color: var(--maroon); }
+    .nav-links a:hover svg { stroke: var(--maroon); }
+    .nav-links a.active { background: var(--maroon-pale); color: var(--maroon); font-weight: 600; }
+    .nav-links a.active svg { stroke: var(--maroon); }
+
+    .sidebar-bottom { padding: 12px 12px 16px; border-top: 1px solid #f5eded; }
+
+    .logout-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px;
+      text-decoration: none; color: #cc3333; font-size: 13.5px; font-weight: 500;
+      transition: background .15s;
+    }
+    .logout-link:hover { background: #fff5f5; }
+    .logout-link svg { stroke: #cc3333; }
+
+    /* ── MAIN ── */
+    .main-content { margin-left: 240px; flex: 1; display: flex; flex-direction: column; }
+
+    .topbar {
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 13px 40px; display: flex; align-items: center;
+      position: sticky; top: 0; z-index: 5;
+    }
+
+    .topbar-crumb { font-size: 13px; color: var(--text-muted); }
+    .topbar-crumb a { color: var(--text-muted); text-decoration: none; }
+    .topbar-crumb a:hover { color: var(--maroon); }
+    .topbar-crumb .current { color: var(--maroon); font-weight: 500; }
+
+    .page-body { padding: 36px 40px; }
+
+    .page-header { margin-bottom: 28px; }
+    .page-header h1 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .page-header p  { font-size: 13px; color: var(--text-muted); }
+
+    /* ── SUMMARY CARDS ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .summary-card {
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .summary-icon { font-size: 28px; }
+
+    .summary-label {
+      font-size: 11.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+
+    .summary-value { font-size: 20px; font-weight: 700; }
+
+    .card-total   { background: var(--maroon-pale); border: 1px solid var(--maroon-border); }
+    .card-total   .summary-label,
+    .card-total   .summary-value { color: var(--maroon); }
+
+    .card-paid    { background: var(--green-bg); border: 1px solid var(--green-border); }
+    .card-paid    .summary-label,
+    .card-paid    .summary-value { color: var(--green); }
+
+    .card-balance-ok  { background: var(--green-bg); border: 1px solid var(--green-border); }
+    .card-balance-ok  .summary-label,
+    .card-balance-ok  .summary-value { color: var(--green); }
+
+    .card-balance-bad { background: var(--red-bg); border: 1px solid var(--red-border); }
+    .card-balance-bad .summary-label,
+    .card-balance-bad .summary-value { color: var(--red); }
+
+    /* ── TABLE CARD ── */
+    .table-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(128,0,0,0.05);
+    }
+
+    .table-card-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .table-card-header span { font-size: 14px; font-weight: 600; color: var(--text); }
+
+    .data-table { width: 100%; border-collapse: collapse; }
+
+    .data-table thead tr { background: #fdf8f8; }
+
+    .data-table th {
+      padding: 12px 16px; text-align: left;
+      font-size: 11.5px; font-weight: 700;
+      color: var(--maroon); text-transform: uppercase; letter-spacing: .05em;
+      border-bottom: 2px solid var(--maroon-border);
+    }
+
+    .data-table tbody tr { border-bottom: 1px solid #fdf0f0; }
+    .data-table tbody tr:nth-child(even) { background: #fffafa; }
+
+    .data-table td {
+      padding: 14px 16px;
+      font-size: 13.5px; color: var(--text-sub);
+      vertical-align: middle;
+    }
+
+    .td-id     { font-weight: 500; }
+    .td-total  { font-weight: 500; color: var(--text); }
+    .td-paid   { font-weight: 500; color: var(--green); }
+    .td-bal-ok { font-weight: 700; color: var(--green); }
+    .td-bal-bad{ font-weight: 700; color: var(--red); }
+
+    /* Progress bar */
+    .progress-wrap { display: flex; align-items: center; gap: 8px; min-width: 120px; }
+    .progress-track {
+      flex: 1; height: 7px; border-radius: 99px;
+      background: #f0e8e8; overflow: hidden;
+    }
+    .progress-fill { height: 100%; border-radius: 99px; }
+    .progress-pct  { font-size: 11px; color: var(--text-muted); min-width: 32px; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      border-radius: 999px; padding: 4px 10px;
+      font-size: 11.5px; font-weight: 600;
+    }
+    .badge-paid    { background: var(--green-bg);  color: var(--green); border: 1px solid var(--green-border); }
+    .badge-pending { background: var(--amber-bg);  color: var(--amber); border: 1px solid var(--amber-border); }
+    .badge-overdue { background: var(--red-bg);    color: var(--red);   border: 1px solid var(--red-border);   }
+    .badge-due-ok  { background: #f8f8f8; color: #555; border: 1px solid #eee; }
+
+    /* Empty state */
+    .empty-state {
+      background: var(--maroon-pale); border: 1px solid var(--maroon-border);
+      border-radius: 12px; padding: 24px;
+      font-size: 13.5px; color: var(--maroon);
+    }
+
+    /* Back button */
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 20px; padding: 9px 18px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      color: var(--maroon); background: var(--maroon-pale);
+      border: 1px solid var(--maroon-border);
+      transition: background .15s;
+    }
+    .btn-back:hover { background: #f9e0e0; }
+
+    @media (max-width: 900px) {
+      nav { width: 70px; }
+      .logo-abbr, .logo-sub, .nav-links a span, .logout-link span { display: none; }
+      .main-content { margin-left: 70px; }
+      .page-body { padding: 24px 20px; }
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <div class="dashboard-layout">
+<div class="page">
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo">Enrollment System</div>
-                <div class="sidebar-tagline">Student Portal</div>
-            </div>
-
-            <nav class="sidebar-nav">
-                <a href="dashboard.php">Dashboard</a>
-                <a href="balance.php" class="active">Balance</a>
-            </nav>
-        </aside>
-
-        <!-- Main -->
-        <div class="main-content">
-
-            <!-- Topbar -->
-            <div class="topbar">
-                <div class="topbar-title">Balance Inquiry</div>
-            </div>
-
-            <!-- Page Body -->
-            <div class="page-body">
-
-                <div class="page-header">
-                    <h1>My Balance</h1>
-                    <p>View your billing and payment status</p>
-                </div>
-
-                <?php if ($result && $result->num_rows > 0): ?>
-                    <div class="card">
-                        <div class="table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Billing ID</th>
-                                        <th>Total Amount</th>
-                                        <th>Paid</th>
-                                        <th>Balance</th>
-                                        <th>Status</th> <!-- ✅ FIXED -->
-                                        <th>Due Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php while ($row = $result->fetch_assoc()): ?>
-
-                                    <?php
-                                    /* ✅ Overdue logic */
-                                    $isOverdue = ($row['balance'] > 0 && $row['due_date'] < $today);
-                                    ?>
-
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($row['billing_id']); ?></td>
-
-                                        <td>₱ <?php echo number_format($row['total_amount'], 2); ?></td>
-
-                                        <td class="text-success">
-                                            ₱ <?php echo number_format($row['paid_amount'], 2); ?>
-                                        </td>
-
-                                        <td class="<?php echo ($row['balance'] > 0) ? 'text-danger fw-bold' : 'text-success fw-bold'; ?>">
-                                            ₱ <?php echo number_format($row['balance'], 2); ?>
-                                        </td>
-
-                                        <!-- ✅ STATUS -->
-                                        <td>
-                                            <?php if ($isOverdue): ?>
-                                                <span class="badge badge-danger">Overdue</span>
-                                            <?php elseif ($row['balance'] > 0): ?>
-                                                <span class="badge badge-warning">Pending</span>
-                                            <?php else: ?>
-                                                <span class="badge badge-success">Paid</span>
-                                            <?php endif; ?>
-                                        </td>
-
-                                        <!-- ✅ DUE DATE -->
-                                        <td>
-                                            <span class="badge <?php echo $isOverdue ? 'badge-danger' : 'badge-info'; ?>">
-                                                <?php echo htmlspecialchars($row['due_date']); ?>
-                                            </span>
-                                        </td>
-                                    </tr>
-
-                                <?php endwhile; ?>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <div class="alert alert-info">
-                        No billing record found.
-                    </div>
-                <?php endif; ?>
-
-                <a href="dashboard.php" class="btn btn-secondary mt-2">
-                    ← Back to Dashboard
-                </a>
-
-            </div>
-        </div>
+  <!-- ── SIDEBAR ── -->
+  <nav>
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-abbr">SIMS</div>
+        <div class="logo-sub">Student Portal</div>
+      </div>
     </div>
+
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.php">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="announcements.php">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4M6 8H4a2 2 0 00-2 2v4a2 2 0 002 2h2M18 8l-12 4M18 16l-12-4"/><path d="M6 8v8"/></svg>
+          <span>Announcements</span>
+        </a>
+      </li>
+      <li>
+        <a href="subjects.php">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          <span>Enrolled Subjects</span>
+        </a>
+      </li>
+      <li>
+        <a href="balance.php" class="active">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 13h.01"/><path d="M16 3l-4 4-4-4"/></svg>
+          <span>View Balance</span>
+        </a>
+      </li>
+      <li>
+        <a href="grades.php">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          <span>View Grades</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-bottom">
+      <a href="logout.php" class="logout-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span>Logout</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content">
+
+    <div class="topbar">
+      <div class="topbar-crumb">
+        <a href="dashboard.php">Dashboard</a>
+        &nbsp;›&nbsp;
+        <span class="current">Balance Inquiry</span>
+      </div>
+    </div>
+
+    <div class="page-body">
+
+      <div class="page-header">
+        <h1>My Balance</h1>
+        <p>Track your billing and payment status for each enrollment.</p>
+      </div>
+
+      <?php if (!empty($rows)): ?>
+
+        <!-- ── SUMMARY CARDS ── -->
+        <div class="summary-grid">
+          <div class="summary-card card-total">
+            <div class="summary-icon">📋</div>
+            <div>
+              <div class="summary-label">Total Billed</div>
+              <div class="summary-value">₱ <?php echo number_format($total_billed, 2); ?></div>
+            </div>
+          </div>
+          <div class="summary-card card-paid">
+            <div class="summary-icon">✅</div>
+            <div>
+              <div class="summary-label">Total Paid</div>
+              <div class="summary-value">₱ <?php echo number_format($total_paid, 2); ?></div>
+            </div>
+          </div>
+          <div class="summary-card <?php echo $total_balance > 0 ? 'card-balance-bad' : 'card-balance-ok'; ?>">
+            <div class="summary-icon"><?php echo $total_balance > 0 ? '⚠️' : '🎉'; ?></div>
+            <div>
+              <div class="summary-label">Outstanding Balance</div>
+              <div class="summary-value">₱ <?php echo number_format($total_balance, 2); ?></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TABLE ── -->
+        <div class="table-card">
+          <div class="table-card-header">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#800000" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 13h.01"/><path d="M16 3l-4 4-4-4"/></svg>
+            <span>Billing Records</span>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Billing ID</th>
+                <th>Total Amount</th>
+                <th>Paid</th>
+                <th>Balance</th>
+                <th>Payment Progress</th>
+                <th>Status</th>
+                <th>Due Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($rows as $row):
+                $isOverdue = ($row['balance'] > 0 && $row['due_date'] < $today);
+                $pct = ($row['total_amount'] > 0)
+                  ? min(100, round(($row['paid_amount'] / $row['total_amount']) * 100))
+                  : 0;
+                if ($pct === 100)        $barColor = '#16a34a';
+                elseif ($isOverdue)      $barColor = '#dc2626';
+                else                     $barColor = '#800000';
+              ?>
+              <tr>
+                <td class="td-id">#<?php echo htmlspecialchars($row['billing_id']); ?></td>
+
+                <td class="td-total">₱ <?php echo number_format($row['total_amount'], 2); ?></td>
+
+                <td class="td-paid">₱ <?php echo number_format($row['paid_amount'], 2); ?></td>
+
+                <td class="<?php echo $row['balance'] > 0 ? 'td-bal-bad' : 'td-bal-ok'; ?>">
+                  ₱ <?php echo number_format($row['balance'], 2); ?>
+                </td>
+
+                <td>
+                  <div class="progress-wrap">
+                    <div class="progress-track">
+                      <div class="progress-fill"
+                           style="width:<?php echo $pct; ?>%; background:<?php echo $barColor; ?>;"></div>
+                    </div>
+                    <span class="progress-pct"><?php echo $pct; ?>%</span>
+                  </div>
+                </td>
+
+                <td>
+                  <?php if ($isOverdue): ?>
+                    <span class="badge badge-overdue">Overdue</span>
+                  <?php elseif ($row['balance'] > 0): ?>
+                    <span class="badge badge-pending">Pending</span>
+                  <?php else: ?>
+                    <span class="badge badge-paid">Paid</span>
+                  <?php endif; ?>
+                </td>
+
+                <td>
+                  <span class="badge <?php echo $isOverdue ? 'badge-overdue' : 'badge-due-ok'; ?>">
+                    <?php echo htmlspecialchars($row['due_date']); ?>
+                  </span>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+
+      <?php else: ?>
+        <div class="empty-state">No billing record found.</div>
+      <?php endif; ?>
+
+      <a href="dashboard.php" class="btn-back">← Back to Dashboard</a>
+
+    </div>
+  </div>
+</div>
 </body>
 </html>

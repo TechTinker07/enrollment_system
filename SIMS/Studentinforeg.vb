@@ -15,7 +15,8 @@ Public Class Studentinforeg
             ' We select specific columns from your 'students' table schema
             Dim query As String = "SELECT student_id AS 'ID', first_name AS 'First Name', " &
                                  "last_name AS 'Last Name', email AS 'Email', " &
-                                 "birthdate AS 'Birth Date', address AS 'Address' FROM students"
+                                 "IFNULL(DATE_FORMAT(birthdate, '%Y-%m-%d'), 'N/A') AS `Birthdate`, " &
+                                    "address As 'Address' FROM students"
 
             ' Add Search Logic
             If Not String.IsNullOrWhiteSpace(searchKeyword) AndAlso searchKeyword <> "Search by ID or Name..." Then

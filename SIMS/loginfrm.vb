@@ -1,72 +1,69 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+﻿Imports System.Data.SqlClient
 Imports MySql.Data.MySqlClient
 
 Public Class loginfrm
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        ' 1. Check if empty ang fields
         If String.IsNullOrWhiteSpace(txtUsername.Text) OrElse String.IsNullOrWhiteSpace(txtPassword.Text) Then
             MsgBox("Please enter both username and password.", MsgBoxStyle.Exclamation, "Input Required")
             Exit Sub
         End If
 
         Try
-            ' 2. Buksan ang connection gamit ang sub sa Module mo
             openConn()
 
-            ' 3. Prepare Query - siguradong tugma sa columns sa image (username, password)
-            Dim query As String = "SELECT * FROM users WHERE username = @user AND password = @pass"
+            Dim query As String = "SELECT user_id, username, password, role, status FROM users WHERE username = @user LIMIT 1"
 
-            ' Gagamit tayo ng 'Using' para sa sqlCmd para kusa itong mag-close/dispose
             Using sqlCmd As MySqlCommand = cmd(query)
-                sqlCmd.Parameters.AddWithValue("@user", txtUsername.Text)
-                sqlCmd.Parameters.AddWithValue("@pass", txtPassword.Text)
+                sqlCmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim())
 
-                ' 4. Execute at Read
                 dr = sqlCmd.ExecuteReader()
 
                 If dr.Read() Then
-                    ' Kunin ang 'role' galing sa database column mo
-                    Dim userRole As String = dr("role").ToString()
+                    Dim dbPassword As String = dr("password").ToString()
+                    Dim userRole As String = dr("role").ToString().ToLower()
+                    Dim userStatus As String = dr("status").ToString().ToLower()
 
                     dr.Close()
-                    MsgBox("Login Successful! Welcome, " & txtUsername.Text, MsgBoxStyle.Information, "Access Granted")
 
-
-
-                    If userRole.ToLower() = "admin" Then
-                        MsgBox("Opening Admin Dashboard...", MsgBoxStyle.Information)
-                        Me.Hide()
-                        Adminfrm.Show()
-
-                    ElseIf userRole.ToLower() = "registrar" Then
-                        MsgBox("Opening Registrar Dashboard...", MsgBoxStyle.Information)
-                        Me.Hide()
-                        registrarfrm.Show()
-
-                    ElseIf userRole.ToLower() = "accounting" Then
-                        MsgBox("Opening Finance Dashboard...", MsgBoxStyle.Information)
-                        Me.Hide()
-                        Financefrm.Show()
-
-                    ElseIf userRole.ToLower() = "teacher" OrElse userRole.ToLower() = "faculty" Then
-                        MsgBox("Opening Faculty Dashboard...", MsgBoxStyle.Information)
-                        Me.Hide()
-                        teacherfrm.Show()
-
-                    ElseIf userRole.ToLower() = "student" Then
-                        MsgBox("Students must log in through the web portal.", MsgBoxStyle.Exclamation)
-
-                        Me.Show()
-
-                    Else
-                        MsgBox("Role not recognized. Please contact admin.", MsgBoxStyle.Exclamation)
-
-                        Me.Show()
+                    If dbPassword <> txtPassword.Text Then
+                        MsgBox("Invalid Username or Password.", MsgBoxStyle.Critical, "Access Denied")
+                        Return
                     End If
 
+                    If userStatus = "blocked" Then
+                        MsgBox("Your account is blocked. Please contact the admin.", MsgBoxStyle.Critical, "Access Denied")
+                        Return
+                    End If
+
+                    If userStatus = "pending" AndAlso userRole <> "student" Then
+                        MsgBox("Your staff account is still pending verification.", MsgBoxStyle.Exclamation, "Access Pending")
+                        Return
+                    End If
+
+                    If userRole = "student" Then
+                        MsgBox("Students must log in through the web portal.", MsgBoxStyle.Exclamation)
+                        Return
+                    End If
+
+                    MsgBox("Login Successful! Welcome, " & txtUsername.Text, MsgBoxStyle.Information, "Access Granted")
+
+                    Me.Hide()
+
+                    Select Case userRole
+                        Case "admin"
+                            Adminfrm.Show()
+                        Case "registrar"
+                            registrarfrm.Show()
+                        Case "cashier", "accounting"
+                            Financefrm.Show()
+                        Case "faculty", "teacher"
+                            teacherfrm.Show()
+                        Case Else
+                            MsgBox("Role not recognized. Please contact admin.", MsgBoxStyle.Exclamation)
+                            Me.Show()
+                    End Select
                 Else
-                    ' Kapag walang nahanap na match na user/pass
                     MsgBox("Invalid Username or Password.", MsgBoxStyle.Critical, "Access Denied")
                 End If
             End Using
@@ -74,57 +71,28 @@ Public Class loginfrm
         Catch ex As Exception
             MsgBox("An error occurred: " & ex.Message, MsgBoxStyle.Critical)
         Finally
-            ' 7. Siguraduhing laging sarado ang reader at connection
             If dr IsNot Nothing AndAlso Not dr.IsClosed Then dr.Close()
             closeConn()
         End Try
     End Sub
 
-    Private Sub loginfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Circle para sa PictureBox
-        Dim pathPic As New System.Drawing.Drawing2D.GraphicsPath()
-        pathPic.AddEllipse(0, 0, PictureBox1.Width, PictureBox1.Height)
-        PictureBox1.Region = New Region(pathPic)
 
-        ' Rounded corners para sa Panel
-        Dim pathPanel As New System.Drawing.Drawing2D.GraphicsPath()
-        pathPanel.AddArc(0, 0, 20, 20, 180, 90)
-        pathPanel.AddArc(pnlContainer.Width - 20, 0, 20, 20, 270, 90)
-        pathPanel.AddArc(pnlContainer.Width - 20, pnlContainer.Height - 20, 20, 20, 0, 90)
-        pathPanel.AddArc(0, pnlContainer.Height - 20, 20, 20, 90, 90)
-        pathPanel.CloseFigure()
-        pnlContainer.Region = New Region(pathPanel)
-    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim result As DialogResult = MessageBox.Show("Exit application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If result = DialogResult.Yes Then
             Application.Exit()
         End If
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked Then
-            txtPassword.PasswordChar = Chr(0)
+    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
+        If chkShowPassword.Checked Then
+            txtPassword.UseSystemPasswordChar = False
         Else
-            txtPassword.PasswordChar = "●"
+            txtPassword.UseSystemPasswordChar = True
         End If
     End Sub
 
-
-    Private Sub txtUsername_Enter(sender As Object, e As EventArgs) Handles txtUsername.Enter
-        If txtUsername.Text = "Search student name or ID" Then
-            txtUsername.Text = ""
-            txtUsername.ForeColor = Color.Black
-        End If
-    End Sub
-
-    Private Sub txtSearchStudent_Leave(sender As Object, e As EventArgs) Handles txtUsername.Leave
-        If String.IsNullOrWhiteSpace(txtUsername.Text) Then
-            txtUsername.Text = "Search student name or ID"
-            txtUsername.ForeColor = Color.Gray
-        End If
-    End Sub
 
 End Class

@@ -74,149 +74,449 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration</title>
-    <link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css'); ?>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration — SIMS Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --maroon:        #800000;
+      --maroon-dark:   #5a0000;
+      --maroon-pale:   #fdf0f0;
+      --maroon-border: #f0dede;
+      --bg:            #f9f5f5;
+      --white:         #ffffff;
+      --text:          #1a1a1a;
+      --text-sub:      #444;
+      --text-muted:    #aaa;
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    .reg-card {
+      display: flex;
+      width: 100%;
+      max-width: 960px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(128,0,0,0.10);
+      min-height: 640px;
+    }
+
+    /* ── LEFT PANEL ── */
+    .panel-left {
+      flex: 0 0 280px;
+      background: linear-gradient(160deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-left::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .panel-left::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .panel-content { position: relative; z-index: 1; }
+
+    .panel-emoji { font-size: 36px; margin-bottom: 18px; }
+
+    .panel-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .panel-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .panel-footer {
+      position: relative; z-index: 1;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 24px;
+    }
+
+    /* ── RIGHT FORM ── */
+    .panel-right {
+      flex: 1;
+      background: var(--white);
+      padding: 36px 40px;
+      overflow-y: auto;
+    }
+
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--maroon-pale);
+      border: 1px solid var(--maroon-border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--maroon);
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--maroon);
+      display: inline-block;
+    }
+
+    .form-heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .form-subheading {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    /* Alert */
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .alert-error {
+      background: #fff5f5;
+      border: 1px solid #fdd;
+      color: #cc2222;
+    }
+
+    .alert-success {
+      background: var(--maroon-pale);
+      border: 1px solid var(--maroon-border);
+      color: var(--maroon);
+    }
+
+    /* Section divider */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--maroon);
+      border-bottom: 2px solid #f3c6c6;
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+    }
+
+    .section-label + .section-label,
+    .form-row + .section-label,
+    .form-group + .section-label {
+      margin-top: 10px;
+    }
+
+    /* Form grid */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 18px;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 5px;
+    }
+
+    .required { color: var(--maroon); }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--maroon-border);
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--text);
+      font-family: inherit;
+      background: #fff;
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--maroon);
+      box-shadow: 0 0 0 3px rgba(128,0,0,0.08);
+    }
+
+    .form-input::placeholder { color: #ccc; }
+
+    .form-hint {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Submit */
+    .btn-submit {
+      width: 100%;
+      margin-top: 6px;
+      padding: 13px;
+      background: var(--maroon);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: background .15s;
+    }
+
+    .btn-submit:hover { background: var(--maroon-dark); }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0 14px;
+      color: #ccc;
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #f0e8e8;
+    }
+
+    .text-center { text-align: center; }
+    .font-sm { font-size: 13px; color: #888; }
+
+    .font-sm a {
+      color: var(--maroon);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .font-sm a:hover { text-decoration: underline; }
+
+    @media (max-width: 700px) {
+      .panel-left { display: none; }
+      .reg-card { border-radius: 14px; }
+      .form-row { grid-template-columns: 1fr; }
+      .panel-right { padding: 28px 22px; }
+    }
+  </style>
 </head>
 <body>
+<div class="page-wrap">
+  <div class="reg-card">
 
-<div class="auth-page" style="align-items: flex-start; padding: 2rem;">
-    <div class="auth-card" style="max-width: 980px; margin: auto;">
-
-        <!-- Left branding panel -->
-        <div class="auth-panel" style="flex: 0 0 280px;">
-            <div style="position: relative; z-index: 1;">
-                <div class="auth-panel-logo">&#127891;</div>
-                <div class="auth-panel-title">Create Your<br>Student Account</div>
-                <div class="auth-panel-desc" style="margin-top: 0.75rem;">
-                    Fill in your details to register. Your account will be reviewed and activated by the admin.
-                </div>
-
-                <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 14px;">
-                    <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.75);">
-                        <span style="width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;">1</span>
-                        Fill in the registration form
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.75);">
-                        <span style="width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;">2</span>
-                        Wait for admin verification
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.75);">
-                        <span style="width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;">3</span>
-                        Login once approved
-                    </div>
-                </div>
-            </div>
-            <div class="auth-panel-footer">&#169; 2025 &middot; Enrollment Portal</div>
+    <!-- ── LEFT PANEL ── -->
+    <div class="panel-left">
+      <div class="panel-content">
+        <div class="panel-emoji">🎓</div>
+        <div class="panel-title">Create Your<br>Student Account</div>
+        <div class="panel-desc">
+          Fill in your details to register. Your account will be reviewed and activated by the admin.
         </div>
 
-        <!-- Right form panel -->
-        <div class="auth-form-panel" style="flex: 1; overflow-y: auto;">
-            <div class="portal-badge"><div class="dot"></div> New Student Registration</div>
-            <div class="auth-heading" style="font-size: 22px;">Student Registration</div>
-            <div class="auth-subheading">Fields marked with <span style="color: #7b0020;">*</span> are required</div>
-
-            <?php if (!empty($message)): ?>
-                <div class="alert alert-<?php echo $message_type; ?>">
-                    <?php echo $message_type === 'success' ? '&#10004;' : '&#9888;'; ?>
-                    <?php echo htmlspecialchars($message); ?>
-                </div>
-            <?php endif; ?>
-
-            <form method="POST" autocomplete="off">
-
-                <!-- Section label -->
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #7b0020; margin-bottom: 0.75rem; padding-bottom: 6px; border-bottom: 2px solid #f3c6ce;">
-                    Student Information
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Student ID <span class="required">*</span></label>
-                        <input class="form-input" type="text" name="student_id"
-                               placeholder="e.g. 2024-00001"
-                               value="<?php echo isset($_POST['student_id']) ? htmlspecialchars($_POST['student_id']) : ''; ?>"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input class="form-input" type="email" name="email"
-                               placeholder="student@email.com"
-                               value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">First Name <span class="required">*</span></label>
-                        <input class="form-input" type="text" name="first_name"
-                               placeholder="Juan"
-                               value="<?php echo isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : ''; ?>"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Last Name <span class="required">*</span></label>
-                        <input class="form-input" type="text" name="last_name"
-                               placeholder="Dela Cruz"
-                               value="<?php echo isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : ''; ?>"
-                               required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Birthdate</label>
-                        <input class="form-input" type="date" name="birthdate"
-                               value="<?php echo isset($_POST['birthdate']) ? htmlspecialchars($_POST['birthdate']) : ''; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Address</label>
-                        <input class="form-input" type="text" name="address"
-                               placeholder="City, Province"
-                               value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>">
-                    </div>
-                </div>
-
-                <!-- Section label -->
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #7b0020; margin: 0.5rem 0 0.75rem; padding-bottom: 6px; border-bottom: 2px solid #f3c6ce;">
-                    Account Credentials
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Username <span class="required">*</span></label>
-                    <input class="form-input" type="text" name="username"
-                           placeholder="Choose a unique username"
-                           value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
-                           required autocomplete="new-password">
-                    <div class="form-hint">This will be used to log in to your account.</div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Password <span class="required">*</span></label>
-                        <input class="form-input" type="password" name="password"
-                               placeholder="Create a password" required autocomplete="new-password">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Confirm Password <span class="required">*</span></label>
-                        <input class="form-input" type="password" name="confirm_password"
-                               placeholder="Re-enter your password" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-full" style="margin-top: 0.25rem; padding: 13px; font-size: 15px;">
-                    Create Account &#8594;
-                </button>
-
-            </form>
-
-            <div class="divider">or</div>
-            <p class="text-center font-sm">Already have an account? <a href="login.php">Login here</a></p>
-
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            Fill in the registration form
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            Wait for admin verification
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            Login once approved
+          </div>
         </div>
+      </div>
+      <div class="panel-footer">© 2025 · Enrollment Portal</div>
     </div>
-</div>
 
+    <!-- ── RIGHT FORM ── -->
+    <div class="panel-right">
+      <div class="portal-badge">
+        <span class="badge-dot"></span>
+        New Student Registration
+      </div>
+
+      <div class="form-heading">Student Registration</div>
+      <div class="form-subheading">
+        Fields marked with <span class="required">*</span> are required
+      </div>
+
+      <?php if (!empty($message)): ?>
+        <div class="alert alert-<?php echo $message_type; ?>">
+          <?php echo $message_type === 'success' ? '✔' : '⚠'; ?>
+          <?php echo htmlspecialchars($message); ?>
+        </div>
+      <?php endif; ?>
+
+      <form method="POST" autocomplete="off">
+
+        <div class="section-label">Student Information</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Student ID <span class="required">*</span></label>
+            <input class="form-input" type="text" name="student_id"
+                   placeholder="e.g. 2024-00001"
+                   value="<?php echo isset($_POST['student_id']) ? htmlspecialchars($_POST['student_id']) : ''; ?>"
+                   required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" name="email"
+                   placeholder="student@email.com"
+                   value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name <span class="required">*</span></label>
+            <input class="form-input" type="text" name="first_name"
+                   placeholder="Juan"
+                   value="<?php echo isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : ''; ?>"
+                   required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name <span class="required">*</span></label>
+            <input class="form-input" type="text" name="last_name"
+                   placeholder="Dela Cruz"
+                   value="<?php echo isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : ''; ?>"
+                   required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Birthdate</label>
+            <input class="form-input" type="date" name="birthdate"
+                   value="<?php echo isset($_POST['birthdate']) ? htmlspecialchars($_POST['birthdate']) : ''; ?>">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Address</label>
+            <input class="form-input" type="text" name="address"
+                   placeholder="City, Province"
+                   value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>">
+          </div>
+        </div>
+
+        <div class="section-label">Account Credentials</div>
+
+        <div class="form-group">
+          <label class="form-label">Username <span class="required">*</span></label>
+          <input class="form-input" type="text" name="username"
+                 placeholder="Choose a unique username"
+                 value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
+                 required autocomplete="new-password">
+          <div class="form-hint">This will be used to log in to your account.</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Password <span class="required">*</span></label>
+            <input class="form-input" type="password" name="password"
+                   placeholder="Create a password" required autocomplete="new-password">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password <span class="required">*</span></label>
+            <input class="form-input" type="password" name="confirm_password"
+                   placeholder="Re-enter your password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Create Account →</button>
+
+      </form>
+
+      <div class="divider">or</div>
+      <p class="text-center font-sm">
+        Already have an account? <a href="login.php">Login here</a>
+      </p>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>

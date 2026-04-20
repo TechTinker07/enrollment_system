@@ -4,12 +4,34 @@ Public Class gradeentryform
     Private SelectedGradeID As Integer = 0
 
     Private Sub gradeentryform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadStudents()
         LoadSubjects()
         LoadGradesTable()
         ClearForm()
     End Sub
 
     ' === VALIDATION LOGIC: Auto-Remarks ===
+    Private Sub LoadStudents()
+        Try
+            openConn()
+            Dim adp As New MySqlDataAdapter(
+            "SELECT s.student_id, CONCAT(s.student_id, ' - ', s.last_name, ', ', s.first_name) AS display_name
+             FROM students s
+             JOIN enrollments e ON s.student_id = e.student_id
+             WHERE e.status = 'enrolled'
+             ORDER BY s.last_name ASC", conn)
+            Dim dt As New DataTable
+            adp.Fill(dt)
+            cboStudent.DataSource = dt
+            cboStudent.DisplayMember = "display_name"
+            cboStudent.ValueMember = "student_id"
+            cboStudent.SelectedIndex = -1
+        Catch ex As Exception
+            MsgBox("Error loading students: " & ex.Message, MsgBoxStyle.Critical)
+        Finally
+            closeConn()
+        End Try
+    End Sub
     Private Sub txtGrade_TextChanged(sender As Object, e As EventArgs) Handles txtGrade.TextChanged
         Dim val As Double
         If Double.TryParse(txtGrade.Text, val) Then
@@ -32,8 +54,8 @@ Public Class gradeentryform
     ' === SAVE LOGIC with Database Validations ===
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         ' 1. Client-side Validation
-        If String.IsNullOrWhiteSpace(txtEnrollmentID.Text) Then
-            MsgBox("Error: Student ID is required.", MsgBoxStyle.Critical)
+        If cboStudent.SelectedIndex = -1 OrElse cboStudent.SelectedValue Is Nothing Then
+            MsgBox("Error: Please select a student.", MsgBoxStyle.Critical)
             Return
         End If
 
@@ -54,11 +76,25 @@ Public Class gradeentryform
             ' 2. Check if student is actually enrolled (txtEnrollmentID stores Student ID)
             Dim checkQuery As String = "SELECT enrollment_id FROM enrollments WHERE student_id = @sid AND status = 'enrolled' LIMIT 1"
             Dim checkCmd As New MySqlCommand(checkQuery, conn)
-            checkCmd.Parameters.AddWithValue("@sid", txtEnrollmentID.Text)
+            checkCmd.Parameters.AddWithValue("@sid", cboStudent.SelectedValue)
             Dim enrollId = checkCmd.ExecuteScalar()
 
             If enrollId Is Nothing Then
                 MsgBox("Validation Error: This Student ID is not currently enrolled.", MsgBoxStyle.Critical)
+                Return
+            End If
+
+            ' Check if subject is part of student's enrolled subjects
+            Dim subjectCheck As New MySqlCommand(
+            "SELECT COUNT(*) FROM enrollment_details ed
+             JOIN schedules sc ON ed.schedule_id = sc.schedule_id
+             WHERE ed.enrollment_id = @eid
+             AND sc.subject_id = @subid", conn)
+            subjectCheck.Parameters.AddWithValue("@eid", enrollId)
+            subjectCheck.Parameters.AddWithValue("@subid", cboSubject.SelectedValue)
+
+            If Convert.ToInt32(subjectCheck.ExecuteScalar()) = 0 Then
+                MsgBox("Validation Error: This subject is not part of the student's enrolled subjects.", MsgBoxStyle.Critical)
                 Return
             End If
 
@@ -147,7 +183,7 @@ Public Class gradeentryform
 
     Private Sub ClearForm()
         SelectedGradeID = 0
-        txtEnrollmentID.Clear()
+        cboStudent.SelectedIndex = -1
         txtGrade.Clear()
         txtRemarks.Clear()
         If cboSubject.Items.Count > 0 Then cboSubject.SelectedIndex = 0
@@ -156,10 +192,12 @@ Public Class gradeentryform
 
     Private Sub dgvGrades_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvGrades.CellClick
         If e.RowIndex < 0 Then Return
+        If dgvGrades.Rows(e.RowIndex).IsNewRow Then Return
+        If dgvGrades.Rows(e.RowIndex).Cells("grade_id").Value Is Nothing Then Return
 
         Dim row = dgvGrades.Rows(e.RowIndex)
         SelectedGradeID = Convert.ToInt32(row.Cells("grade_id").Value)
-        txtEnrollmentID.Text = row.Cells("student_id").Value.ToString()
+        cboStudent.SelectedValue = row.Cells("student_id").Value.ToString() ' <-- updated
         cboSubject.Text = row.Cells("subject_title").Value.ToString()
         txtGrade.Text = row.Cells("grade_value").Value.ToString()
         txtRemarks.Text = row.Cells("remarks").Value.ToString()

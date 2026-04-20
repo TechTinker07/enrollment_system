@@ -4,7 +4,7 @@
 
     Private Sub teacherfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenChildForm(New dashboardteacher())
-        lblHeader.Text = "Teacher Dashboard / Home"
+
     End Sub
 
     Private Sub OpenChildForm(childForm As Form)
@@ -28,22 +28,21 @@
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         OpenChildForm(New dashboardteacher())
-        lblHeader.Text = "Teacher Dashboard / Home"
+
     End Sub
 
     Private Sub btnGradeEntry_Click(sender As Object, e As EventArgs) Handles btnGradeEntry.Click
         OpenChildForm(New gradeentryform())
-        lblHeader.Text = "Teacher Dashboard / Grade Entry"
+
     End Sub
 
     Private Sub btnGradeList_Click(sender As Object, e As EventArgs) Handles btnGradeList.Click
         OpenChildForm(New gradeslistfrm())
-        lblHeader.Text = "Teacher Dashboard / Master Grades List"
+
     End Sub
 
     Private Sub btnAnnouncements_Click(sender As Object, e As EventArgs) Handles btnAnnouncements.Click
         OpenChildForm(New announcementform())
-        lblHeader.Text = "Teacher Dashboard / Announcements"
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
