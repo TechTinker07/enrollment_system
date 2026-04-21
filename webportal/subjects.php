@@ -114,8 +114,8 @@ function fmt12(string $t): string {
     }
 
     .logo-icon svg { display: block; }
-    .logo-abbr { font-size: 12px; font-weight: 700; color: var(--maroon); letter-spacing: .1em; text-transform: uppercase; }
-    .logo-sub  { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+    .logo-abbr { font-size: 18px; font-weight: 700; color: var(--maroon); letter-spacing: .1em; text-transform: uppercase; }
+    .logo-sub  { font-size: 14px; color: var(--text-muted); margin-top: 1px; }
 
     .nav-links { list-style: none; padding: 14px 12px; flex: 1; }
     .nav-links li { margin-bottom: 2px; }
@@ -124,7 +124,7 @@ function fmt12(string $t): string {
       display: flex; align-items: center; gap: 10px;
       padding: 10px 12px; border-radius: 8px;
       text-decoration: none; color: #555;
-      font-size: 13.5px; font-weight: 400;
+      font-size: 14px; font-weight: 400;
       transition: background .15s, color .15s;
     }
     .nav-links a svg { stroke: #ccc; transition: stroke .15s; }
@@ -151,7 +151,7 @@ function fmt12(string $t): string {
       padding: 13px 40px; display: flex; align-items: center;
       position: sticky; top: 0; z-index: 5;
     }
-    .topbar-crumb { font-size: 13px; color: var(--text-muted); }
+    .topbar-crumb { font-size: 14px; color: var(--text-muted); }
     .topbar-crumb a { color: var(--text-muted); text-decoration: none; }
     .topbar-crumb a:hover { color: var(--maroon); }
     .topbar-crumb .current { color: var(--maroon); font-weight: 500; }
@@ -207,15 +207,15 @@ function fmt12(string $t): string {
     .data-table thead tr { background: #fdf8f8; }
     .data-table th {
       padding: 12px 16px; text-align: left;
-      font-size: 11.5px; font-weight: 700;
+      font-size: 12px; font-weight: 700;
       color: var(--maroon); text-transform: uppercase; letter-spacing: .05em;
       border-bottom: 2px solid var(--maroon-border);
     }
     .data-table tbody tr { border-bottom: 1px solid #fdf0f0; }
     .data-table tbody tr:nth-child(even) { background: #fffafa; }
-    .data-table td { padding: 14px 16px; font-size: 13.5px; color: var(--text-sub); vertical-align: middle; }
+    .data-table td { padding: 14px 16px; font-size: 14px; color: var(--text-sub); vertical-align: middle; }
 
-    .td-num   { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .td-num   { font-size: 14px; color: var(--text-muted); font-weight: 500; }
     .td-code  { font-weight: 700; color: var(--maroon); font-family: monospace; font-size: 13px; }
     .td-title { color: var(--text); }
 
@@ -240,21 +240,21 @@ function fmt12(string $t): string {
     /* Time */
     .time-cell {
       display: flex; align-items: center; gap: 5px;
-      font-size: 12.5px; font-weight: 500; color: #333; white-space: nowrap;
+      font-size: 13px; font-weight: 500; color: #333; white-space: nowrap;
     }
 
     /* Empty state */
     .empty-state {
       background: var(--maroon-pale); border: 1px solid var(--maroon-border);
       border-radius: 12px; padding: 24px;
-      font-size: 13.5px; color: var(--maroon);
+      font-size: 14px; color: var(--maroon);
     }
 
     /* Back */
     .btn-back {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 20px; padding: 9px 18px; border-radius: 8px;
-      font-size: 13px; font-weight: 500; text-decoration: none;
+      font-size: 14px; font-weight: 500; text-decoration: none;
       color: var(--maroon); background: var(--maroon-pale);
       border: 1px solid var(--maroon-border); transition: background .15s;
     }
@@ -290,31 +290,31 @@ function fmt12(string $t): string {
     <ul class="nav-links">
       <li>
         <a href="dashboard.php">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           <span>Dashboard</span>
         </a>
       </li>
       <li>
         <a href="announcements.php">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4M6 8H4a2 2 0 00-2 2v4a2 2 0 002 2h2M18 8l-12 4M18 16l-12-4"/><path d="M6 8v8"/></svg>
+          <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4M6 8H4a2 2 0 00-2 2v4a2 2 0 002 2h2M18 8l-12 4M18 16l-12-4"/><path d="M6 8v8"/></svg>
           <span>Announcements</span>
         </a>
       </li>
       <li>
         <a href="subjects.php" class="active">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
           <span>Enrolled Subjects</span>
         </a>
       </li>
       <li>
         <a href="balance.php">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 13h.01"/><path d="M16 3l-4 4-4-4"/></svg>
+          <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 13h.01"/><path d="M16 3l-4 4-4-4"/></svg>
           <span>View Balance</span>
         </a>
       </li>
       <li>
         <a href="grades.php">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
           <span>View Grades</span>
         </a>
       </li>
@@ -322,7 +322,7 @@ function fmt12(string $t): string {
 
     <div class="sidebar-bottom">
       <a href="logout.php" class="logout-link">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         <span>Logout</span>
       </a>
     </div>

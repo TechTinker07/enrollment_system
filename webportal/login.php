@@ -31,31 +31,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Your account is still pending verification by the admin.";
                 $message_type = "warning";
             } else {
-                $_SESSION['user_id'] = $row['user_id'];
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['role'] = $row['role'];
+				$_SESSION['user_id']  = $row['user_id'];
+				$_SESSION['username'] = $row['username'];
+				$_SESSION['role']     = $row['role'];
 
-                if ($row['role'] === 'student') {
-                    $student_stmt = $conn->prepare("
-                        SELECT s.student_id, s.first_name, s.last_name, 
-                               (SELECT c.course_code FROM enrollments e JOIN courses c ON e.course_id = c.course_id WHERE e.student_id = s.student_id ORDER BY e.enrollment_date DESC LIMIT 1) as course_code
-                        FROM students s 
-                        WHERE s.user_id = ?
-                    ");
-                    $student_stmt->bind_param("i", $row['user_id']);
-                    $student_stmt->execute();
-                    $student_result = $student_stmt->get_result();
-                    if ($student_row = $student_result->fetch_assoc()) {
-                        $_SESSION['student_id'] = $student_row['student_id'];
-                        $_SESSION['username'] = $student_row['first_name'] . ' ' . $student_row['last_name'];
-                        $_SESSION['course'] = $student_row['course_code'] ?? '';
-                    }
-                    $student_stmt->close();
-                }
+				// Fetch student details
+				$sStmt = $conn->prepare("
+					SELECT s.student_id, c.course_code, e.semester
+					FROM students s
+					LEFT JOIN enrollments e ON s.student_id = e.student_id
+					LEFT JOIN courses c ON e.course_id = c.course_id
+					WHERE s.user_id = ?
+					ORDER BY e.enrollment_id DESC
+					LIMIT 1
+				");
+				$sStmt->bind_param("i", $row['user_id']);
+				$sStmt->execute();
+				$sRow = $sStmt->get_result()->fetch_assoc();
+				$sStmt->close();
 
-                header("Location: dashboard.php");
-                exit;
-            }
+				$_SESSION['student_id'] = $sRow['student_id'] ?? '';
+				$_SESSION['course']     = $sRow['course_code'] ?? '';
+				$_SESSION['year_level'] = $sRow['semester']    ?? '';
+
+				header("Location: dashboard.php");
+				exit;
+			}
         } else {
             $message = "Invalid username or password.";
             $message_type = "error";

@@ -13,7 +13,7 @@ $query = "SELECT a.announcement_id, a.title, a.content, a.date_posted, u.usernam
 $result = $conn->query($query);
 
 // Fetch read announcement IDs for the current student
-$student_id = $_SESSION['user_id'];
+$student_id = $_SESSION['student_id'];
 $read_ids = [];
 $read_query = "SELECT announcement_id FROM announcement_reads WHERE student_id = ?";
 $stmt = $conn->prepare($read_query);
@@ -219,7 +219,7 @@ $stmt->close();
       margin-bottom: 3px;
     }
 
-    .ann-meta { font-size: 13px; color: var(--text-muted); }
+    .ann-meta { font-size: 14px; color: var(--text-muted); }
     .ann-meta strong { color: var(--text-sub); font-weight: 500; }
 
     .ann-badge {
@@ -235,7 +235,7 @@ $stmt->close();
     }
 
     .ann-body {
-      font-size: 13px;
+      font-size: 14px;
       color: #555;
       line-height: 1.75;
     }
@@ -280,7 +280,7 @@ $stmt->close();
     <ul class="nav-links">
       <li>
         <a href="dashboard.php">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           <span>Dashboard</span>
         </a>
       </li>

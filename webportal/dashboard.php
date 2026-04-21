@@ -7,58 +7,70 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
 }
 
 $username   = $_SESSION['username'] ?? 'Student';
-$student_id = $_SESSION['student_id'] ?? '';
+$student_id = $_SESSION['student_id'] ?? '';  //
 $course     = $_SESSION['course'] ?? '';
 $year_level = $_SESSION['year_level'] ?? '';
+$user_id    = $_SESSION['user_id'];           
 
-// Fetch dynamic stats
-$enrolled_units = 0;
-$outstanding_balance = 0;
-$gwa = '—';
+// ── STATS QUERIES ──
+// 1. Enrolled Units
+$uStmt = $conn->prepare("
+    SELECT COALESCE(SUM(sub.units), 0) AS total_units
+    FROM students s
+    JOIN enrollments e ON s.student_id = e.student_id
+    JOIN enrollment_details ed ON e.enrollment_id = ed.enrollment_id
+    JOIN schedules sc ON ed.schedule_id = sc.schedule_id
+    JOIN subjects sub ON sc.subject_id = sub.subject_id
+    WHERE s.user_id = ? AND e.status = 'enrolled'
+");
+$uStmt->bind_param("i", $user_id);
+$uStmt->execute();
+$units = $uStmt->get_result()->fetch_assoc()['total_units'] ?? 0;
+$uStmt->close();
 
-if (!empty($student_id)) {
-    // Enrolled Units
-    $units_stmt = $conn->prepare("
-        SELECT SUM(sub.units) as total_units
-        FROM enrollments e
-        JOIN enrollment_details ed ON e.enrollment_id = ed.enrollment_id
-        JOIN schedules sch ON ed.schedule_id = sch.schedule_id
-        JOIN subjects sub ON sch.subject_id = sub.subject_id
-        WHERE e.student_id = ?
-    ");
-    $units_stmt->bind_param("s", $student_id);
-    $units_stmt->execute();
-    $units_res = $units_stmt->get_result();
-    if ($row = $units_res->fetch_assoc()) $enrolled_units = $row['total_units'] ?? 0;
-    
-    // Outstanding Balance
-    $balance_stmt = $conn->prepare("
-        SELECT SUM(b.balance) as total_balance
-        FROM billing b
-        JOIN enrollments e ON b.enrollment_id = e.enrollment_id
-        WHERE e.student_id = ?
-    ");
-    $balance_stmt->bind_param("s", $student_id);
-    $balance_stmt->execute();
-    $balance_res = $balance_stmt->get_result();
-    if ($row = $balance_res->fetch_assoc()) $outstanding_balance = $row['total_balance'] ?? 0;
-    
-    // GWA
-    $gwa_stmt = $conn->prepare("
-        SELECT AVG(g.grade_value) as gwa
-        FROM grades g
-        JOIN enrollments e ON g.enrollment_id = e.enrollment_id
-        WHERE e.student_id = ? AND g.grade_value IS NOT NULL
-    ");
-    $gwa_stmt->bind_param("s", $student_id);
-    $gwa_stmt->execute();
-    $gwa_res = $gwa_stmt->get_result();
-    if ($row = $gwa_res->fetch_assoc()) {
-        if ($row['gwa'] !== null) {
-            $gwa = number_format((float)$row['gwa'], 2);
-        }
-    }
-}
+// 2. Outstanding Balance
+$bStmt = $conn->prepare("
+    SELECT COALESCE(SUM(b.balance), 0) AS total_balance
+    FROM students s
+    JOIN enrollments e ON s.student_id = e.student_id
+    JOIN billing b ON e.enrollment_id = b.enrollment_id
+    WHERE s.user_id = ?
+");
+$bStmt->bind_param("i", $user_id);
+$bStmt->execute();
+$balRow = $bStmt->get_result()->fetch_assoc();
+$balance = '₱' . number_format($balRow['total_balance'] ?? 0, 2);
+$bStmt->close();
+
+// 3. GWA
+$gStmt = $conn->prepare("
+    SELECT ROUND(AVG(g.grade_value), 2) AS gwa
+    FROM students s
+    JOIN enrollments e ON s.student_id = e.student_id
+    JOIN grades g ON e.enrollment_id = g.enrollment_id
+    WHERE s.user_id = ?
+");
+$gStmt->bind_param("i", $user_id);
+$gStmt->execute();
+$gwaRow = $gStmt->get_result()->fetch_assoc();
+$gwa = $gwaRow['gwa'] ?? '—';
+$gStmt->close();
+
+// 4. Unread Announcements
+$uqStmt = $conn->prepare("
+    SELECT COUNT(*) as unread_count
+    FROM announcements a
+    WHERE a.announcement_id NOT IN (
+        SELECT ar.announcement_id
+        FROM announcement_reads ar
+        JOIN students s ON ar.student_id = s.student_id
+        WHERE s.user_id = ?
+    )
+");
+$uqStmt->bind_param("i", $user_id);
+$uqStmt->execute();
+$unread = $uqStmt->get_result()->fetch_assoc()['unread_count'] ?? 0;
+$uqStmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -368,14 +380,14 @@ if (!empty($student_id)) {
     <?php endif; ?>
 
     <ul class="nav-links">
-	 <li>
+      <li>
         <a href="dashboard.php" class="active">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           <span>Dashboard</span>
         </a>
       </li>
       <li>
-        <a href="announcements.php" >
+        <a href="announcements.php">
           <svg width="15" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4M6 8H4a2 2 0 00-2 2v4a2 2 0 002 2h2M18 8l-12 4M18 16l-12-4"/><path d="M6 8v8"/></svg>
           <span>Announcements</span>
         </a>
@@ -417,63 +429,40 @@ if (!empty($student_id)) {
       <h1><?php echo htmlspecialchars($username); ?> 👋</h1>
       <p class="meta">
         <?php
-          $meta = array_filter([$course, $year_level, $student_id]);
+		$meta = array_filter([$course, $year_level, $student_id]);
           echo htmlspecialchars(implode(' · ', $meta));
         ?>
       </p>
     </div>
 
-    <!-- Stats — pull these from your DB queries -->
+    <!-- Stats grid -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="value"><?php echo $enrolled_units; ?></div>
+        <div class="value"><?php echo $units; ?></div>
         <div class="label">Enrolled Units</div>
         <div class="sub">this semester</div>
       </div>
       <div class="stat-card">
-        <div class="value">₱<?php echo number_format($outstanding_balance, 2); ?></div>
+        <div class="value"><?php echo $balance; ?></div>
         <div class="label">Outstanding Balance</div>
         <div class="sub">as of today</div>
       </div>
       <div class="stat-card">
         <div class="value"><?php echo $gwa; ?></div>
         <div class="label">GWA</div>
-        <div class="sub">overall</div>
+        <div class="sub">last semester</div>
       </div>
       <div class="stat-card">
-  <div class="value">
-    <?php
-    $user_id = $_SESSION['user_id'];
-
-$query = "
-SELECT COUNT(*) as unread_count
-FROM announcements a
-WHERE a.announcement_id NOT IN (
-    SELECT ar.announcement_id
-    FROM announcement_reads ar
-    WHERE ar.student_id = ?
-)
-";
-
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
-
-echo $row['unread_count'];
-    ?>
-  </div>
-
-  <div class="label">Unread Notices</div>
-  <div class="sub">new announcements</div>
-</div>
+        <div class="value"><?php echo $unread; ?></div>
+        <div class="label">Unread Notices</div>
+        <div class="sub">new announcements</div>
+      </div>
     </div>
 
     <!-- Bottom row -->
     <div class="bottom-grid">
 
-      <!-- Announcements preview — replace with your DB query -->
+      <!-- Announcements preview -->
       <div class="announcements-panel">
         <div class="panel-header">
           <span class="title">Recent Announcements</span>
@@ -482,14 +471,14 @@ echo $row['unread_count'];
 
         <?php
         $ann_stmt = $conn->prepare("
-			SELECT title, category, date_posted 
-			FROM announcements 
-			ORDER BY date_posted DESC 
-			LIMIT 3
-		");
-		$ann_stmt->execute();
-		$result = $ann_stmt->get_result();
-		$announcements = $result->fetch_all(MYSQLI_ASSOC);
+            SELECT title, category, date_posted
+            FROM announcements
+            ORDER BY date_posted DESC
+            LIMIT 3
+        ");
+        $ann_stmt->execute();
+        $announcements = $ann_stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $ann_stmt->close();
 
         if (empty($announcements)):
         ?>
@@ -514,11 +503,9 @@ echo $row['unread_count'];
         <?php endif; ?>
       </div>
 
-      
-
     </div>
   </main>
 
 </div>
 </body>
-</html>
+</html>	
