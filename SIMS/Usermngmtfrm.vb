@@ -7,6 +7,8 @@ Public Class Usermngmtfrm
         AddHandler btnApprove.Click, AddressOf btnApprove_Click
         AddHandler btnDelete.Click, AddressOf btnDelete_Click
         AddHandler txtSearch.TextChanged, AddressOf txtSearch_TextChanged
+        AddHandler btnAdd.Click, AddressOf btnAdd_Click
+
         LoadUserList()
     End Sub
 
@@ -128,4 +130,10 @@ Public Class Usermngmtfrm
         End If
     End Sub
 
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        Dim addForm As New adduserform()
+        If addForm.ShowDialog() = DialogResult.OK Then
+            LoadUserList() ' I-refresh ang list pagkatapos mag-save
+        End If
+    End Sub
 End Class
