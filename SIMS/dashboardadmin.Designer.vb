@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class dashboardadmin
     Inherits System.Windows.Forms.Form
 
@@ -66,7 +66,7 @@ Partial Class dashboardadmin
         '
         'pnlMain
         '
-        Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
         Me.pnlMain.Controls.Add(Me.cardCourses)
         Me.pnlMain.Controls.Add(Me.cardUsers)
         Me.pnlMain.Controls.Add(Me.lblGridTitle)
@@ -83,7 +83,7 @@ Partial Class dashboardadmin
         '
         'cardCourses
         '
-        Me.cardCourses.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(162, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.cardCourses.BackColor = System.Drawing.Color.White
         Me.cardCourses.Controls.Add(Me.lblCourseVal)
         Me.cardCourses.Controls.Add(Me.lblCourseTitle)
         Me.cardCourses.Location = New System.Drawing.Point(1015, 23)
@@ -94,8 +94,8 @@ Partial Class dashboardadmin
         'lblCourseVal
         '
         Me.lblCourseVal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblCourseVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblCourseVal.ForeColor = System.Drawing.Color.White
+        Me.lblCourseVal.Font = New System.Drawing.Font("Segoe UI", 26.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCourseVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.lblCourseVal.Location = New System.Drawing.Point(0, 40)
         Me.lblCourseVal.Name = "lblCourseVal"
         Me.lblCourseVal.Size = New System.Drawing.Size(230, 75)
@@ -106,8 +106,8 @@ Partial Class dashboardadmin
         'lblCourseTitle
         '
         Me.lblCourseTitle.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblCourseTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblCourseTitle.ForeColor = System.Drawing.Color.White
+        Me.lblCourseTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCourseTitle.ForeColor = System.Drawing.Color.Gray
         Me.lblCourseTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblCourseTitle.Name = "lblCourseTitle"
         Me.lblCourseTitle.Padding = New System.Windows.Forms.Padding(0, 10, 0, 0)
@@ -118,7 +118,7 @@ Partial Class dashboardadmin
         '
         'cardUsers
         '
-        Me.cardUsers.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
+        Me.cardUsers.BackColor = System.Drawing.Color.White
         Me.cardUsers.Controls.Add(Me.lblUserVal)
         Me.cardUsers.Controls.Add(Me.lblUserTitle)
         Me.cardUsers.Location = New System.Drawing.Point(767, 23)
@@ -129,8 +129,8 @@ Partial Class dashboardadmin
         'lblUserVal
         '
         Me.lblUserVal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblUserVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblUserVal.ForeColor = System.Drawing.Color.White
+        Me.lblUserVal.Font = New System.Drawing.Font("Segoe UI", 26.0!, System.Drawing.FontStyle.Bold)
+        Me.lblUserVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.lblUserVal.Location = New System.Drawing.Point(0, 40)
         Me.lblUserVal.Name = "lblUserVal"
         Me.lblUserVal.Size = New System.Drawing.Size(230, 75)
@@ -141,8 +141,8 @@ Partial Class dashboardadmin
         'lblUserTitle
         '
         Me.lblUserTitle.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblUserTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblUserTitle.ForeColor = System.Drawing.Color.White
+        Me.lblUserTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblUserTitle.ForeColor = System.Drawing.Color.Gray
         Me.lblUserTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblUserTitle.Name = "lblUserTitle"
         Me.lblUserTitle.Padding = New System.Windows.Forms.Padding(0, 10, 0, 0)
@@ -170,12 +170,13 @@ Partial Class dashboardadmin
         Me.dgvRecentPayments.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvRecentPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(145, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(60, Byte), Integer))
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvRecentPayments.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvRecentPayments.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvRecentPayments.Location = New System.Drawing.Point(23, 203)
         Me.dgvRecentPayments.Name = "dgvRecentPayments"
@@ -186,7 +187,7 @@ Partial Class dashboardadmin
         '
         'cardPending
         '
-        Me.cardPending.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.cardPending.BackColor = System.Drawing.Color.White
         Me.cardPending.Controls.Add(Me.lblPendingVal)
         Me.cardPending.Controls.Add(Me.lblPendingTitle)
         Me.cardPending.Location = New System.Drawing.Point(519, 23)
@@ -197,8 +198,8 @@ Partial Class dashboardadmin
         'lblPendingVal
         '
         Me.lblPendingVal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblPendingVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblPendingVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblPendingVal.Font = New System.Drawing.Font("Segoe UI", 26.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPendingVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.lblPendingVal.Location = New System.Drawing.Point(0, 40)
         Me.lblPendingVal.Name = "lblPendingVal"
         Me.lblPendingVal.Size = New System.Drawing.Size(230, 75)
@@ -209,8 +210,8 @@ Partial Class dashboardadmin
         'lblPendingTitle
         '
         Me.lblPendingTitle.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblPendingTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblPendingTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblPendingTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPendingTitle.ForeColor = System.Drawing.Color.Gray
         Me.lblPendingTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblPendingTitle.Name = "lblPendingTitle"
         Me.lblPendingTitle.Padding = New System.Windows.Forms.Padding(0, 10, 0, 0)
@@ -221,7 +222,7 @@ Partial Class dashboardadmin
         '
         'cardRevenue
         '
-        Me.cardRevenue.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(167, Byte), Integer), CType(CType(69, Byte), Integer))
+        Me.cardRevenue.BackColor = System.Drawing.Color.White
         Me.cardRevenue.Controls.Add(Me.lblRevenueVal)
         Me.cardRevenue.Controls.Add(Me.lblRevenueTitle)
         Me.cardRevenue.Location = New System.Drawing.Point(271, 23)
@@ -232,8 +233,8 @@ Partial Class dashboardadmin
         'lblRevenueVal
         '
         Me.lblRevenueVal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblRevenueVal.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Bold)
-        Me.lblRevenueVal.ForeColor = System.Drawing.Color.White
+        Me.lblRevenueVal.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRevenueVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(167, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.lblRevenueVal.Location = New System.Drawing.Point(0, 40)
         Me.lblRevenueVal.Name = "lblRevenueVal"
         Me.lblRevenueVal.Size = New System.Drawing.Size(230, 75)
@@ -244,8 +245,8 @@ Partial Class dashboardadmin
         'lblRevenueTitle
         '
         Me.lblRevenueTitle.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblRevenueTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblRevenueTitle.ForeColor = System.Drawing.Color.White
+        Me.lblRevenueTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRevenueTitle.ForeColor = System.Drawing.Color.Gray
         Me.lblRevenueTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblRevenueTitle.Name = "lblRevenueTitle"
         Me.lblRevenueTitle.Padding = New System.Windows.Forms.Padding(0, 10, 0, 0)
@@ -256,7 +257,7 @@ Partial Class dashboardadmin
         '
         'cardStudents
         '
-        Me.cardStudents.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cardStudents.BackColor = System.Drawing.Color.White
         Me.cardStudents.Controls.Add(Me.lblStudentVal)
         Me.cardStudents.Controls.Add(Me.lblStudentTitle)
         Me.cardStudents.Location = New System.Drawing.Point(23, 23)
@@ -267,8 +268,8 @@ Partial Class dashboardadmin
         'lblStudentVal
         '
         Me.lblStudentVal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblStudentVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblStudentVal.ForeColor = System.Drawing.Color.White
+        Me.lblStudentVal.Font = New System.Drawing.Font("Segoe UI", 26.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStudentVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.lblStudentVal.Location = New System.Drawing.Point(0, 40)
         Me.lblStudentVal.Name = "lblStudentVal"
         Me.lblStudentVal.Size = New System.Drawing.Size(230, 75)
@@ -279,8 +280,8 @@ Partial Class dashboardadmin
         'lblStudentTitle
         '
         Me.lblStudentTitle.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblStudentTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblStudentTitle.ForeColor = System.Drawing.Color.White
+        Me.lblStudentTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStudentTitle.ForeColor = System.Drawing.Color.Gray
         Me.lblStudentTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblStudentTitle.Name = "lblStudentTitle"
         Me.lblStudentTitle.Padding = New System.Windows.Forms.Padding(0, 10, 0, 0)

@@ -45,12 +45,13 @@
         OpenChildForm(New announcementform())
     End Sub
 
-    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-        Dim res = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation",
-                                  MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If res = DialogResult.Yes Then
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs)
+        If MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            loginfrm.txtUsername.Clear()
+            loginfrm.txtPassword.Clear()
+            Me.Close()
             loginfrm.Show()
-            Me.Dispose()
         End If
     End Sub
+
 End Class

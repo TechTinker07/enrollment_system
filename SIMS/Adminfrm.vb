@@ -72,10 +72,11 @@
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs)
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            loginfrm.Show()
+        If MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            loginfrm.txtUsername.Clear()
+            loginfrm.txtPassword.Clear()
             Me.Close()
+            loginfrm.Show()
         End If
     End Sub
 

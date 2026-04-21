@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports MySql.Data.MySqlClient
 
 Public Class paymentfrm
@@ -69,13 +69,13 @@ Public Class paymentfrm
         End If
 
         selectedBillingID = Convert.ToInt32(row.Cells("billing_id").Value)
-        lblBillID.Text = "Billing ID: " & selectedBillingID
-        lblStudentName.Text = "Student: " & row.Cells("last_name").Value & ", " & row.Cells("first_name").Value
-        lblCurrentBalance.Text = "Current Balance: ₱" & FormatNumber(balance, 2)
+        lblBillID.Text = selectedBillingID.ToString()
+        lblStudentName.Text = row.Cells("last_name").Value.ToString() & ", " & row.Cells("first_name").Value.ToString()
+        lblCurrentBalance.Text = "₱" & FormatNumber(balance, 2)
         txtAmountToPay.Text = balance.ToString("F2")
 
-        ' Auto-generate new OR every time a student is selected
-        GenerateOR()
+        ' Removed GenerateOR() from here so the OR number doesn't randomly change when clicking different rows.
+        ' A new OR is generated only on Form Load and after a successful payment transaction.
     End Sub
 
     Private Sub btnProcessPayment_Click(sender As Object, e As EventArgs) Handles btnProcessPayment.Click
@@ -189,8 +189,8 @@ Public Class paymentfrm
     End Sub
 
     ' Manual regenerate OR button (optional)
-    Private Sub btnGenerateOR_Click(sender As Object, e As EventArgs) Handles btnGenerateOR.Click
-        GenerateOR()
-    End Sub
+    ' Private Sub btnGenerateOR_Click(sender As Object, e As EventArgs) Handles btnGenerateOR.Click
+    '     GenerateOR()
+    ' End Sub
 
 End Class

@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Billing
     Inherits System.Windows.Forms.Form
 
@@ -32,12 +32,12 @@ Partial Class Billing
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Billing))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -55,12 +55,11 @@ Partial Class Billing
         Me.btnPartialPay = New System.Windows.Forms.Button()
         Me.btnFullPay = New System.Windows.Forms.Button()
         Me.lblInstruction = New System.Windows.Forms.Label()
-        Me.dgvPaymentHistory = New System.Windows.Forms.DataGridView()
+        '  Me.dgvPaymentHistory = New System.Windows.Forms.DataGridView()
         Me.pnlHeader.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvBilling, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPaymentArea.SuspendLayout()
-        CType(Me.dgvPaymentHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlHeader
@@ -91,7 +90,7 @@ Partial Class Billing
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Gray
         Me.Label2.Location = New System.Drawing.Point(55, 43)
         Me.Label2.Name = "Label2"
@@ -144,37 +143,37 @@ Partial Class Billing
         'dgvBilling
         '
         Me.dgvBilling.AllowUserToAddRows = False
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.dgvBilling.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.dgvBilling.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
         Me.dgvBilling.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvBilling.BackgroundColor = System.Drawing.Color.White
         Me.dgvBilling.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvBilling.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvBilling.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
         Me.dgvBilling.EnableHeadersVisualStyles = False
         Me.dgvBilling.GridColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(228, Byte), Integer))
         Me.dgvBilling.Location = New System.Drawing.Point(20, 90)
         Me.dgvBilling.MultiSelect = False
         Me.dgvBilling.Name = "dgvBilling"
         Me.dgvBilling.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvBilling.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        DataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvBilling.RowHeadersDefaultCellStyle = DataGridViewCellStyle15
         Me.dgvBilling.RowHeadersVisible = False
         Me.dgvBilling.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvBilling.Size = New System.Drawing.Size(894, 250)
+        Me.dgvBilling.Size = New System.Drawing.Size(894, 370)
         Me.dgvBilling.TabIndex = 1
         '
         'pnlPaymentArea
@@ -190,9 +189,9 @@ Partial Class Billing
         Me.pnlPaymentArea.Controls.Add(Me.txtPaymentInput)
         Me.pnlPaymentArea.Controls.Add(Me.btnPartialPay)
         Me.pnlPaymentArea.Controls.Add(Me.btnFullPay)
-        Me.pnlPaymentArea.Location = New System.Drawing.Point(20, 352)
+        Me.pnlPaymentArea.Location = New System.Drawing.Point(20, 475)
         Me.pnlPaymentArea.Name = "pnlPaymentArea"
-        Me.pnlPaymentArea.Size = New System.Drawing.Size(894, 143)
+        Me.pnlPaymentArea.Size = New System.Drawing.Size(894, 180)
         Me.pnlPaymentArea.TabIndex = 2
         '
         'Label4
@@ -210,7 +209,7 @@ Partial Class Billing
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(38, 60)
         Me.Label3.Name = "Label3"
@@ -295,52 +294,14 @@ Partial Class Billing
         Me.lblInstruction.Size = New System.Drawing.Size(100, 23)
         Me.lblInstruction.TabIndex = 0
         '
-        'dgvPaymentHistory
-        '
-        Me.dgvPaymentHistory.AllowUserToAddRows = False
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.dgvPaymentHistory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvPaymentHistory.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvPaymentHistory.BackgroundColor = System.Drawing.Color.White
-        Me.dgvPaymentHistory.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(107, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(42, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPaymentHistory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvPaymentHistory.EnableHeadersVisualStyles = False
-        Me.dgvPaymentHistory.GridColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.dgvPaymentHistory.Location = New System.Drawing.Point(20, 515)
-        Me.dgvPaymentHistory.MultiSelect = False
-        Me.dgvPaymentHistory.Name = "dgvPaymentHistory"
-        Me.dgvPaymentHistory.ReadOnly = True
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(235, Byte), Integer))
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(61, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(24, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPaymentHistory.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
-        Me.dgvPaymentHistory.RowHeadersVisible = False
-        Me.dgvPaymentHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPaymentHistory.Size = New System.Drawing.Size(894, 171)
-        Me.dgvPaymentHistory.TabIndex = 3
-        '
         'Billing
         '
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(934, 698)
-        Me.Controls.Add(Me.dgvPaymentHistory)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.dgvBilling)
         Me.Controls.Add(Me.pnlPaymentArea)
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.Name = "Billing"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SIMS - Billing & Collection"
@@ -351,7 +312,6 @@ Partial Class Billing
         CType(Me.dgvBilling, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlPaymentArea.ResumeLayout(False)
         Me.pnlPaymentArea.PerformLayout()
-        CType(Me.dgvPaymentHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -362,5 +322,4 @@ Partial Class Billing
     Friend WithEvents Label3 As Label
     Friend WithEvents lblStuds As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents dgvPaymentHistory As DataGridView
 End Class

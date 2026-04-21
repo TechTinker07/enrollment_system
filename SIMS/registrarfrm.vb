@@ -84,10 +84,12 @@
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs)
-        ' Siguraduhin muna bago i-logout ang user
-        If MessageBox.Show("Are you sure you want to logout?", "Logout Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            loginfrm.txtUsername.Clear()
+            loginfrm.txtPassword.Clear()
+            Me.Close()
             loginfrm.Show()
-            Me.Close() ' Isinasara ang form at tinatapos ang session
         End If
     End Sub
+
 End Class

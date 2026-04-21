@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class financedashboard
     Inherits System.Windows.Forms.Form
 
@@ -43,15 +43,26 @@ Partial Class financedashboard
         Me.Text = "SIMS Finance Dashboard"
         Me.BackColor = System.Drawing.Color.FromArgb(244, 247, 252)
 
-        ' Header
+        Me.pnlHeader = New Panel()
+        Me.lblTitle = New Label()
+
+        ' Panel
         Me.pnlHeader.Dock = DockStyle.Top
         Me.pnlHeader.Height = 70
-        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(34, 45, 50)
-        Me.lblTitle.Text = "FINANCIAL ANALYTICS"
-        Me.lblTitle.ForeColor = System.Drawing.Color.White
-        Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 18, FontStyle.Bold)
-        Me.lblTitle.Location = New System.Drawing.Point(25, 18)
+        Me.pnlHeader.BackColor = Color.FromArgb(107, 26, 42)
+
+        ' Label
+        Me.lblTitle.Text = "Financial Analytics"
+        Me.lblTitle.ForeColor = Color.White
+        Me.lblTitle.Font = New Font("Segoe UI", 14, FontStyle.Bold)
+        Me.lblTitle.Location = New Point(25, 18)
+        Me.lblTitle.AutoSize = True
+
+        ' Add label to panel
         Me.pnlHeader.Controls.Add(Me.lblTitle)
+
+        ' Add panel to form
+        Me.Controls.Add(Me.pnlHeader)
 
         ' KPI Layout
         Me.flowKPILayouter.Location = New System.Drawing.Point(20, 90)
@@ -63,7 +74,7 @@ Partial Class financedashboard
         Me.lblBalValue = New Label()
 
         ' Add Cards via Helper (aligned in FlowLayout)
-        Me.flowKPILayouter.Controls.Add(CreateKPICard("TOTAL REVENUE", lblRevValue, Color.DodgerBlue))
+        Me.flowKPILayouter.Controls.Add(CreateKPICard("TOTAL REVENUE", lblRevValue, Color.FromArgb(107, 26, 42)))
         Me.flowKPILayouter.Controls.Add(CreateKPICard("TOTAL COLLECTED", lblCollValue, Color.SeaGreen))
         Me.flowKPILayouter.Controls.Add(CreateKPICard("OUTSTANDING BALANCE", lblBalValue, Color.Crimson))
 
@@ -74,7 +85,10 @@ Partial Class financedashboard
         Me.chartFinance.Size = New System.Drawing.Size(530, 420)
         Series1.Name = "CollectionTrend"
         Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+        Series1.Color = System.Drawing.Color.FromArgb(107, 26, 42)
         Me.chartFinance.Series.Add(Series1)
+        Me.chartFinance.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None
+        Me.chartFinance.PaletteCustomColors = New Color() {System.Drawing.Color.FromArgb(107, 26, 42), System.Drawing.Color.Goldenrod, System.Drawing.Color.SeaGreen, System.Drawing.Color.Crimson}
 
         ' Table
         Me.lblTableTitle.Text = "RECENT TRANSACTIONS"
@@ -84,7 +98,28 @@ Partial Class financedashboard
         Me.dgvPayments.Location = New System.Drawing.Point(580, 305)
         Me.dgvPayments.Size = New System.Drawing.Size(530, 385)
         Me.dgvPayments.BackgroundColor = Color.White
+        Me.dgvPayments.BorderStyle = BorderStyle.None
+        Me.dgvPayments.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvPayments.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
         Me.dgvPayments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvPayments.EnableHeadersVisualStyles = False
+        
+        Dim headerStyle As New DataGridViewCellStyle() With {
+            .BackColor = Color.FromArgb(250, 245, 246),
+            .ForeColor = Color.FromArgb(107, 26, 42),
+            .Font = New Font("Segoe UI", 9),
+            .Alignment = DataGridViewContentAlignment.MiddleLeft
+        }
+        Me.dgvPayments.ColumnHeadersDefaultCellStyle = headerStyle
+        Me.dgvPayments.ColumnHeadersHeight = 35
+        
+        Dim cellStyle As New DataGridViewCellStyle() With {
+            .SelectionBackColor = Color.FromArgb(107, 26, 42),
+            .SelectionForeColor = Color.White,
+            .Font = New Font("Segoe UI", 9)
+        }
+        Me.dgvPayments.DefaultCellStyle = cellStyle
+        Me.dgvPayments.AlternatingRowsDefaultCellStyle = New DataGridViewCellStyle() With {.BackColor = Color.FromArgb(253, 247, 248)}
 
         Me.Controls.Add(Me.dgvPayments)
         Me.Controls.Add(Me.lblTableTitle)

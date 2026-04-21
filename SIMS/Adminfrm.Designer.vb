@@ -256,7 +256,7 @@ Partial Class Adminfrm
         Me.btnLogout.Location = New System.Drawing.Point(0, 660)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnLogout.Size = New System.Drawing.Size(265, 76)
+        Me.btnLogout.Size = New System.Drawing.Size(310, 76)
         Me.btnLogout.TabIndex = 0
         Me.btnLogout.Text = "Logout"
         Me.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -275,7 +275,7 @@ Partial Class Adminfrm
         Me.btnAnnouncements.Location = New System.Drawing.Point(0, 573)
         Me.btnAnnouncements.Name = "btnAnnouncements"
         Me.btnAnnouncements.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnAnnouncements.Size = New System.Drawing.Size(265, 87)
+        Me.btnAnnouncements.Size = New System.Drawing.Size(310, 87)
         Me.btnAnnouncements.TabIndex = 1
         Me.btnAnnouncements.Text = "Announcements"
         Me.btnAnnouncements.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -294,7 +294,7 @@ Partial Class Adminfrm
         Me.btnSchedules.Location = New System.Drawing.Point(0, 496)
         Me.btnSchedules.Name = "btnSchedules"
         Me.btnSchedules.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnSchedules.Size = New System.Drawing.Size(265, 77)
+        Me.btnSchedules.Size = New System.Drawing.Size(310, 77)
         Me.btnSchedules.TabIndex = 2
         Me.btnSchedules.Text = "Schedules"
         Me.btnSchedules.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -313,7 +313,7 @@ Partial Class Adminfrm
         Me.btnSubjects.Location = New System.Drawing.Point(0, 413)
         Me.btnSubjects.Name = "btnSubjects"
         Me.btnSubjects.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnSubjects.Size = New System.Drawing.Size(265, 83)
+        Me.btnSubjects.Size = New System.Drawing.Size(310, 83)
         Me.btnSubjects.TabIndex = 3
         Me.btnSubjects.Text = "Subjects"
         Me.btnSubjects.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -332,7 +332,7 @@ Partial Class Adminfrm
         Me.btnCourseMgmt.Location = New System.Drawing.Point(0, 334)
         Me.btnCourseMgmt.Name = "btnCourseMgmt"
         Me.btnCourseMgmt.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnCourseMgmt.Size = New System.Drawing.Size(265, 79)
+        Me.btnCourseMgmt.Size = New System.Drawing.Size(310, 79)
         Me.btnCourseMgmt.TabIndex = 4
         Me.btnCourseMgmt.Text = "Courses"
         Me.btnCourseMgmt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -351,7 +351,7 @@ Partial Class Adminfrm
         Me.btnStudentInfo.Location = New System.Drawing.Point(0, 259)
         Me.btnStudentInfo.Name = "btnStudentInfo"
         Me.btnStudentInfo.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnStudentInfo.Size = New System.Drawing.Size(265, 75)
+        Me.btnStudentInfo.Size = New System.Drawing.Size(310, 75)
         Me.btnStudentInfo.TabIndex = 5
         Me.btnStudentInfo.Text = "Student Info"
         Me.btnStudentInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -370,7 +370,7 @@ Partial Class Adminfrm
         Me.btnUserMgmt.Location = New System.Drawing.Point(0, 185)
         Me.btnUserMgmt.Name = "btnUserMgmt"
         Me.btnUserMgmt.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnUserMgmt.Size = New System.Drawing.Size(265, 74)
+        Me.btnUserMgmt.Size = New System.Drawing.Size(310, 74)
         Me.btnUserMgmt.TabIndex = 6
         Me.btnUserMgmt.Text = "User Management"
         Me.btnUserMgmt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -390,7 +390,7 @@ Partial Class Adminfrm
         Me.btnDashboard.Location = New System.Drawing.Point(0, 125)
         Me.btnDashboard.Name = "btnDashboard"
         Me.btnDashboard.Padding = New System.Windows.Forms.Padding(50, 0, 0, 0)
-        Me.btnDashboard.Size = New System.Drawing.Size(265, 60)
+        Me.btnDashboard.Size = New System.Drawing.Size(310, 60)
         Me.btnDashboard.TabIndex = 7
         Me.btnDashboard.Text = "Dashboard"
         Me.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
